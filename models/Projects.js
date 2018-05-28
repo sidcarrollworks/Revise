@@ -9,12 +9,12 @@ const projectSchema = new mongoose.Schema({
 	  rev_id: mongoose.Schema.Types.ObjectId,
 	  title: { type: String, maxlength: 90, required: true },
 	  comments: [{ type: String }],
+	  body: { type: String, required: true },
+          type: { type: String, Enum: UPLOAD_TYPE, required: true  },
 	  userObject: [{ type: mongoose.Schema.Types.ObjectId,
 			 ref: 'User',
 			 required: true
 	       }],
-	body: { type: String, required: true },
-	type: { type: String, Enum: UPLOAD_TYPE, required: true  } 
 	}]
     },
     { timestamps: true }
