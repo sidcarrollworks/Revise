@@ -1,6 +1,9 @@
 #vscode
 .vscode/
 
+#bundle dot js to many lines
+client/dist/js/bundle.js
+
 # Logs
 logs
 *.log
