@@ -31,4 +31,4 @@ const projectSchema = new mongoose.Schema({
 
 // Projects.create({ proj_title: 'My Project v2', proj_description: 'Just another day', revision: [{title: 'This is my title', project_owner: ['5b0bc0bba4d0e82d58f71bbc'], body: 'new_body', type: 'text'}]})
 
-module.exports = projectSchema;
+module.exports = mongoose.model('Projects', projectSchema);

@@ -8,7 +8,7 @@ const path       = require('path');
 // const morgana = require("./middleware/morgana.js");
 
 // importing routes
-// const api = require("");
+// const api = require("./routes/api");
 const auth = require("./routes/auth.js");
 
 // init app
@@ -18,7 +18,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Initialize passport
 app.use(passport.initialize());
+// load passport strategies
+const SignupStrategy = require('./utils/passport/login-strategy.js');
+const LoginStrategy = require('./utils/passport/login-strategy.js');
+const jwtStrategy = require('./utils/passport/jwt-strategy.js')
+passport.use('signup', SignupStrategy);
+passport.use('login', LoginStrategy);
+passport.use('jwt', jwtStrategy);
 
 // app.use(morgana)
 // Morgan logger //
@@ -37,8 +45,8 @@ app.use(express.static("./client/public"))
 
 // Apply routes that wont serve react app
 
-// app.use("/api", api);
 app.use("/auth", auth);
+app.use("/api", passport.authenticate('jwt', { session: false }), api);
 
 // Status... because we care about you
 app.get('/status', (req, res) => {
