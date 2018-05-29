@@ -1,0 +1,28 @@
+.welcome {
+    height: 400px;
+    text-align: center;
+    background-color: rgb(143, 212, 252);
+}
+
+.welcome .welcomeElements {
+    padding-top: 150px;
+    top: 50%;
+    margin: 0;
+}
+
+.welcomeElements h1 {
+    margin: 0;
+    font-size: 50px;
+}
+
+.getStarted {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px 10px 15px;
+    font-size: 24px;
+    border-radius: 5px;
+}
+
+.getStarted:hover {
+    background-color: #111;
+}
