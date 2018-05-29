@@ -1,16 +1,11 @@
-const mongoose = require("mongoose");
-mongoose.set('debug', true);
-mongoose.Promise = global.Promise;
+const userSchema = require('./User.js')
+const projectSchema = require('./Project.js')
 
-mongoose.
-    connect("mongodb://localhost/revise_db", {
-	})
-    .then(() => {
-	    console.log("Connected to MongoDB");
-	})
-    .catch(err => {
-	    console.log(err);
-	});
+const User = mongoose.model('Users', userSchema);
+const Project = mongoose.model('Projects', projectSchema);
 
-exports.User = require('./User');
-exports.User = require('./Projects');
+exports.module = {
+  User: User,
+  Project: Project
+}
+

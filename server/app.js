@@ -1,16 +1,18 @@
-const express = require('express');
 const bodyParser = require('body-parser');
-const passport = require('passport');
-const morgan = require('morgan')
-const path = require('path');
+const passport   = require('passport');
+const express    = require('express');
+const morgan     = require("morgan");
+const path       = require('path');
+
+// importing custom middleware
+// const morgana = require("./middleware/morgana.js");
 
 // importing routes
-
+// const api = require("");
+const auth = require("./routes/auth.js");
 
 // init app
 const app = express();
-
-
 
 // body parser
 app.use(bodyParser.json());
@@ -18,9 +20,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(passport.initialize());
 
-
+// app.use(morgana)
 // Morgan logger //
-app.use(morgan("........................................"));
+
 app.use(morgan(':user-agent'));
 app.use(morgan('[:date[clf]]'));
 app.use(morgan('":method | :url | HTTP/:http-version"'));
@@ -29,17 +31,21 @@ app.use(morgan('........................................'));
 app.use(morgan(' '));
 // end of logger info //
 
-// Serve react app and public
+// Serve bundlejs and static files
 app.use(express.static("./client/dist"));
 app.use(express.static("./client/public"))
 
-// Apply routes
+// Apply routes that wont serve react app
 
-app.get("/test", (req, res) => {
-  res.send({ hello: "bitch" });
+// app.use("/api", api);
+app.use("/auth", auth);
+
+// Status... because we care about you
+app.get('/status', (req, res) => {
+  res.send({ status: "ok", code: 201 });
 })
 
-// React route
+// Serve React app on all routes except the ones above route
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('./client/public/index.html'));
 })

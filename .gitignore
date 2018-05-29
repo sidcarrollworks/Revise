@@ -1,9 +1,11 @@
-<<<<<<< HEAD
 #vscode
 .vscode/
 
 #bundle dot js to many lines
-client/dist/js/bundle.js
+client/dist/
+
+#my stupid iCloud thing
+*.icloud
 
 # Logs
 logs
@@ -90,6 +92,3 @@ typings/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-=======
-.vscode
->>>>>>> origin/react-setup
