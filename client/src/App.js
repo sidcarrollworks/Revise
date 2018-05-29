@@ -11,7 +11,7 @@ class Testu extends Component {
 class Home extends Component {
   render() {
     return (
-      <h1>Hello</h1>
+      <h1>Hello dude</h1>
     );
   }
 } 

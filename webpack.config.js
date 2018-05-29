@@ -32,7 +32,7 @@ module.exports = {
     port: 3000,
     open: true,
     proxy: {
-        "/api": "http://localhost:300"
+        "/api": "http://localhost:3000"
     }
   }
 };
