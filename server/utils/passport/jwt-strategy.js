@@ -14,12 +14,12 @@ const opts = {
 module.exports = new JwtStrategy(opts, (token, done) => {
   User.findById(token.sub).exec().then(user => {
     if (user)
-      return done(null, user);
+      done(null, user);
     else
-      return done(null, false);
+      done(null, false);
   })
   .catch(err => {
     console.log("jwt-strategy", err);
-    return done(err, false);
+    done(err, false);
   });
 });

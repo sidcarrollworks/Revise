@@ -18,14 +18,14 @@ module.exports = new PassportLocalStrategy({
       if (user)
         return user;
       else
-        return done(new Error('Incorrect email or password'));
+       throw new Error('Incorrect email or password');
     })
     //check for password
     .then(user => {
       if (user.validPassword(password))
         return user;
       else
-        return done(new Error('Incorrect email or password'));
+        throw new Error('Incorrect email or password');
     })
     // sign and return token
     .then(user => {

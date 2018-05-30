@@ -27,7 +27,6 @@ class Signup extends Component {
 
   handleFormChanges(e) {
     e.preventDefault();
-    console.log(e.target.value)
     let newData = this.state.formData;
     newData[e.target.name] = e.target.value;
     this.setState({
@@ -38,7 +37,12 @@ class Signup extends Component {
   handleFormSubmit(e) {
     // returns false if fail else returns user
     e.preventDefault();
-    authClient.signUp(this.state.formData);
+    authClient.signUp(this.state.formData).then(res => {
+      if (res)
+        this.props.history.push("/login");
+      else
+        console.log("bad login info");
+    });
   }
 
   render() {
@@ -51,7 +55,7 @@ class Signup extends Component {
           <input name="username" value={username} type="text" placeholder="Username"/>
           <input name="email" value={email} type="text" placeholder="Email" />
           <input name="password" value={password} type="password" placeholder="Password"/>
-          <input name="dataOfBirth" value={dateOfBirth} id="formDate" type="date" />
+          <input name="dateOfBirth" value={dateOfBirth} id="formDate" type="date" />
           <select name="gender" id="formSelect">
             <option value="male">Male</option>
             <option value="female">Female</option>

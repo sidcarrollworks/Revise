@@ -17,19 +17,25 @@ router.post('/signup', (req, res, next) => {
 })
 
 router.post('/login', (req, res, next) => {
-  return passport.authenticate('login', (err, token, data) => {
-    if (err)
+  return passport.authenticate('login', (err, token, userData) => {
+    if (err) {
       return res.status(400).json({
         success: false,
         message: err.message
       });
+    }
 
+    userData.password = null;
     return res.json({
       success: true,
       token: token,
-      user: data
+      user: userData
     });
   })(req, res, next);
+})
+
+router.get('/private', passport.authenticate('jwt', { session: false }), (req, res, next) => {
+  res.send({yay: "u did it"})
 })
 
 
