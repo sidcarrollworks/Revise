@@ -9,7 +9,7 @@ class Signup extends Component {
         <form className="loginWrapper">
           <input type="text" placeholder="First Name" />
           <input type="text" placeholder="Last Name" />
-          <input type="text" placeholder="Screen Name"/>
+          <input type="text" placeholder="Username"/>
           <input type="text" placeholder="Email" />
           <input type="text" placeholder="Password"/>
           <input id="formDate" type="date" />

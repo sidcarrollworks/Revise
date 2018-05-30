@@ -1,30 +1,31 @@
 .navbar a {
     text-align: center;
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.76);
+    color: rgb(42, 177, 255);
     font-size: 25px;
 }
 
-a:visited {
-    text-decoration: none;
-}
-
 .navbar a:hover {
-    color: white;
+    color: rgba(42, 177, 255, 0.74);
 }
 
-#navLeft {
-    text-align: left;
+#home {
+    grid-column: 1/2;
 }
-#navRight {
-    flex: 1;
-    text-align: right;
+
+#login {
+    grid-column: 7/8;
 }
+
+#signup {
+    grid-column: 8/9;
+}
+
+
 
 .navbar {
     margin: 0;
-    padding: 10px;
-    background-color: #333;
-    display: flex;
-    flex-direction: row;
+    padding:  5px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
 }

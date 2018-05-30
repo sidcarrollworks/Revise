@@ -9,7 +9,6 @@ class Landing extends Component {
         <div className="welcome">
             <div className="welcomeElements">
                 <h1>Welcome to revise.work</h1>
-                <br/>
                 <Link className="getStarted" to="/signup">Create Account</Link>
             </div>
         </div>

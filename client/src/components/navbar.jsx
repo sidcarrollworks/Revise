@@ -7,11 +7,9 @@ class Navbar extends Component {
     return (
       <div>
         <div className="navbar">
-            <Link id="navLeft" to="/">Home</Link>
-            <div id="navRight">
-                <Link to="/login">Log In</Link>
-                <Link to="/signup"> Sign Up</Link>
-            </div>
+          <Link id="home" to="/">Home</Link>
+          <Link id="login" to="/login">Log In</Link>
+          <Link id="signup" to="/signup">Sign Up</Link>
         </div>
       </div>
     );
