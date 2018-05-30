@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Initialize passport
 app.use(passport.initialize());
 // load passport strategies
-const SignupStrategy = require('./utils/passport/login-strategy.js');
+const SignupStrategy = require('./utils/passport/signup-strategy.js');
 const LoginStrategy = require('./utils/passport/login-strategy.js');
 const jwtStrategy = require('./utils/passport/jwt-strategy.js')
 passport.use('signup', SignupStrategy);
@@ -46,7 +46,7 @@ app.use(express.static("./client/public"))
 // Apply routes that wont serve react app
 
 app.use("/auth", auth);
-app.use("/api", passport.authenticate('jwt', { session: false }), api);
+// app.use("/api", passport.authenticate('jwt', { session: false }), api);
 
 // Status... because we care about you
 app.get('/status', (req, res) => {

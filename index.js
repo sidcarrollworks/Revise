@@ -17,12 +17,12 @@ mongoose.connect(MONGO_CONN, {})
     console.log(err);
   });
   
-User.findById("507f1f77bcf86cd799439011").exec().then(user => {
-  console.log(1, user);
-})
-.catch(err => {
-  console.log(2, err);
-})
+// User.findById("507f1f77bcf86cd799439011").exec().then(user => {
+//   console.log(1, user);
+// })
+// .catch(err => {
+//   console.log(2, err);
+// })
 
 
 server.listen(PORT, () => {

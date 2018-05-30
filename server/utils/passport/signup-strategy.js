@@ -1,7 +1,7 @@
-const User = require('mongoose').model('User');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
-const { JWT_SECRET } = require('../../config');
+const User = require('../../models/User.js');
+const { JWT_SECRET } = require('../../../config');
 
 
 module.exports = new PassportLocalStrategy({
@@ -10,10 +10,15 @@ module.exports = new PassportLocalStrategy({
   session: false,
   passReqToCallback: true
 }, (req, username, password, done) => {
-
+  const { firstName, lastName, email, dateOfBirth, gender } = req.body;
   const userData = {
+    firstName: firstName,
+    lastName: lastName,
     username: username,
-    password: password
+    email: email,
+    password: password,
+    dateOfBirth: dateOfBirth,
+    gender: gender
   }
 
   const newUser = new User(userData);

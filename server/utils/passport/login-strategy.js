@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
-const User = require('mongoose').model('User');
-const { JWT_SECRET } = require('../../config');
+const User = require('../../models/User.js');
+const { JWT_SECRET } = require('../../../config');
 
 
 module.exports = new PassportLocalStrategy({

@@ -1,8 +1,9 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 
 router.post('/signup', (req, res, next) => {
-  return passport.authenticate('signup', (err) => {
+  return passport.authenticate('signup', err => {
     if (err)
       return res.status(400).json({
         success: false,
