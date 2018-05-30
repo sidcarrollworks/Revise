@@ -41,4 +41,5 @@ module.exports = {
         "/auth": "http://localhost:3000"
     }
   }
+
 };

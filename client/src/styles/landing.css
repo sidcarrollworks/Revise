@@ -1,7 +1,6 @@
 .welcome {
-    height: 400px;
+    height: 100%;
     text-align: center;
-    background-color: rgb(143, 212, 252);
 }
 
 .welcome .welcomeElements {
@@ -16,7 +15,7 @@
 }
 
 .getStarted {
-    background-color: #333;
+    background-color: rgb(42, 177, 255);
     color: white;
     padding: 10px 15px 10px 15px;
     font-size: 24px;
@@ -24,5 +23,5 @@
 }
 
 .getStarted:hover {
-    background-color: #111;
+    background-color: rgba(42, 177, 255, 0.74);
 }
