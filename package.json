@@ -1,7 +1,7 @@
 {
   "name": "revise.work",
   "version": "0.1.0",
-  "description": "",
+  "description": "bird is the word",
   "private": true,
   "author": "Sid Carroll, Raman Hundal, Raid55(Nick B.)",
   "scripts": {
@@ -22,7 +22,8 @@
       "webpack.config.js",
       ".babelrc",
       "README.md",
-      ".gitignore"
+      ".gitignore",
+      "webpack.config.js"
     ]
   },
   "dependencies": {

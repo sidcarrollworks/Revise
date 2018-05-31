@@ -23,12 +23,12 @@ mongoose.connect(MONGO_CONN, {})
 // .catch(err => {
 //   console.log(2, err);
 // })
-User.findOne({ username: 'Raid55' }).exec().then(user => {
-  console.log(1, user);
-})
-.catch(err => {
-  console.log(2, err);
-})
+// User.findOne({ username: 'Raid55' }).exec().then(user => {
+//   console.log(1, user);
+// })
+// .catch(err => {
+//   console.log(2, err);
+// })
 
 server.listen(PORT, () => {
   console.log(`Web server starting...`);
