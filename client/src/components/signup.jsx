@@ -64,6 +64,7 @@ class Signup extends Component {
           <button id="formButton" type="submit">Sign Up</button>
           <p className="message">Already have an account? <Link to="/login">Login here</Link></p>
         </form>
+        <div className="logo"><Link to="/">Revise</Link></div>
       </div>
     );
   }
