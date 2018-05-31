@@ -26,9 +26,9 @@ module.exports = new PassportLocalStrategy({
   newUser.save(err => {
     if (err) {
       console.log("signup-strategy", err);
-      return done(err);
+      done(err);
     }
-    return done(null);
+    done(null);
   });
 
 });

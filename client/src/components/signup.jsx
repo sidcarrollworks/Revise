@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import authClient from '../utils/auth.js';
 import '../styles/login.css';
+import IsLoading from './isLoading.jsx';
+
+import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';
 
 class Signup extends Component {
   
@@ -48,6 +51,14 @@ class Signup extends Component {
   render() {
     const { firstName, lastName, username, email, password, dateOfBirth, gender } = this.state.formData;
     return (
+      this.props.isLoading
+      ?
+      <IsLoading />
+      :
+      this.props.isAuth
+      ?
+      <Redirect to="/dashboard"/>
+      :
       <div className="componentWrapper">
         <form className="loginWrapper" onSubmit={this.handleFormSubmit} onChange={this.handleFormChanges}>
           <input name="firstName" value={firstName} type="text" placeholder="First Name" />
@@ -70,4 +81,12 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default props => (
+  <AuthConsumer>
+    {context => (<Signup 
+      {...props}
+      isAuth={context.state.isAuth}
+      isLoading={context.state.isLoading}
+    />)}
+  </AuthConsumer>
+);

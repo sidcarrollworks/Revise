@@ -7,9 +7,11 @@ class Sidebar extends Component {
     return (
       <div>
         <img src="#" alt="Avatar" />
-        <p>First Name</p>
-        <p>Last Name </p>
+        <p>First Name: {this.props.user.firstName}</p>
+        <p>Last Name: {this.props.user.lastName}</p>
+        <p>username fool: {this.props.user.username}</p>
         <p>Settings</p>
+        <button id="formButton" onClick={this.props.handleLogout}>Log out fool</button>
       </div>
     );
   }

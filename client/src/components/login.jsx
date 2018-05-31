@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import authClient from '../utils/auth.js';
+import { Link, Redirect } from 'react-router-dom';
 import '../styles/login.css';
+import IsLoading from './isLoading.jsx';
+
+import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';
 
 class Login extends Component {
 
@@ -30,22 +32,26 @@ class Login extends Component {
   handleFormSubmit(e) {
     // returns false if fail else returns user
     e.preventDefault();
-    authClient.logIn(this.state.formData).then(res => {
-      console.log(res);
-      console.log(localStorage.getItem('token'))
-      this.props.history.push("/dashboard");
-    })
+    this.props.handleLogin(this.state.formData);
   }
-
 
   render() {
     return (
+      this.props.isLoading
+      ?
+      <IsLoading />
+      :
+      this.props.isAuth
+      ?
+      <Redirect to="/dashboard"/>
+      :
       <div className="componentWrapper">
         <form className="loginWrapper" onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit}>
-            <input name="username" type="text" placeholder="Username"/>
-            <input name="password" type="password" placeholder="Password"/>
-            <button id="formButton" type="submit">Login</button>
-            <p className="message">Not registered? <Link to="/signup">Create an account</Link></p>
+          {this.props.err ? <h5>Err with login</h5> : null}
+          <input name="username" type="text" placeholder="Username"/>
+          <input name="password" type="password" placeholder="Password"/>
+          <button id="formButton" type="submit">Login</button>
+          <p className="message">Not registered? <Link to="/signup">Create an account</Link></p>
         </form>
         <div className="logo"><Link to="/">Revise</Link></div>
       </div>
@@ -53,4 +59,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default props => (
+  <AuthConsumer>
+    {context => (<Login 
+      {...props}
+      isAuth={context.state.isAuth}
+      handleLogin={context.handleLogin}
+      err={context.state.err}
+      isLoading={context.state.isLoading}
+    />)}
+  </AuthConsumer>
+);

@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema ({
 	email: { type: String, required: true, unique: true },
 	username: { type: String, required: true, unique: true },
 	dateOfBirth: { type: String, required: true },
-	artistPage: { type: Boolean, default: true },
+	artistPage: { type: Boolean, default: false },
 	password: { type: String, required: true/*, minlength: 60, maxlength: 60 */},
 	avatarUrl: { type: String },
 	gender: { type: String, enum: GENDERS, required: true },

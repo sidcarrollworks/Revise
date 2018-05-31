@@ -8,7 +8,7 @@ const path       = require('path');
 // const morgana = require("./middleware/morgana.js");
 
 // importing routes
-// const api = require("./routes/api");
+const api = require("./routes/api");
 const auth = require("./routes/auth.js");
 
 // init app
@@ -46,7 +46,7 @@ app.use(express.static("./client/public"))
 // Apply routes that wont serve react app
 
 app.use("/auth", auth);
-// app.use("/api", passport.authenticate('jwt', { session: false }), api);
+app.use("/api", passport.authenticate('jwt', { session: false }), api);
 
 // Status... because we care about you
 app.get('/status', (req, res) => {

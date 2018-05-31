@@ -10,17 +10,21 @@ import Signup from './components/signup.jsx';
 import Dashboard from './containers/dashboard.jsx';
 import NotFound from './components/notFound.jsx';
 
+import { AuthProvider } from './contexts/authContext.jsx';
+
 class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Switch>
-          <Route exact path="/" component={Landing} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route component={NotFound} />
-        </Switch>
+        <AuthProvider>
+          <Switch>
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/dashboard" component={Dashboard} />
+            <Route component={NotFound} />
+          </Switch>
+        </AuthProvider>
       </div>
     );
   }

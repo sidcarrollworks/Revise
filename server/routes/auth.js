@@ -23,6 +23,11 @@ router.post('/login', (req, res, next) => {
         success: false,
         message: err.message
       });
+    } else if (!token) {
+      return res.status(400).json({
+        success: false,
+        message: userData.message
+      });
     }
 
     userData.password = null;
