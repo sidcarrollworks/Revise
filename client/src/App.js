@@ -5,8 +5,8 @@ import './styles/App.css';
 import './styles/grid.css';
 
 import Landing from './containers/landing.jsx';
-import Login from './components/login.jsx';
-import Signup from './components/signup.jsx';
+import Login from './components/login_signup/login.jsx';
+import Signup from './components/login_signup/signup.jsx';
 import Dashboard from './containers/dashboard.jsx';
 import NotFound from './components/notFound.jsx';
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
-import '../styles/projectList.css';
+import '../../styles/projectList.css';
 
 class Projectlist extends Component {
   render() {

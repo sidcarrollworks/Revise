@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/landing.css';
 
-import Header from "../components/navbar.jsx";
-import Footer from "../components/footer.jsx";
+import Header from "../components/landingPage/navbar.jsx";
+import Footer from "../components/landingPage/footer.jsx";
 
 class Landing extends Component {
 

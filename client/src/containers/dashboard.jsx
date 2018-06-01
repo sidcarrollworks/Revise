@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import '../styles/dashboard.css';
-import Sidebar from '../components/sidebar.jsx';
-import Projectlist from '../components/projectList.jsx';
+import Sidebar from '../components/dashboard/sidebar.jsx';
+import Projectlist from '../components/dashboard/projectList.jsx';
 import IsLoading from '../components/isLoading.jsx';
 
 import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';

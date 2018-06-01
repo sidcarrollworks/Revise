@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import authClient from '../utils/auth.js';
-import '../styles/login.css';
-import IsLoading from './isLoading.jsx';
+import authClient from '../../utils/auth.js';
+import '../../styles/login.css';
+import IsLoading from '../isLoading.jsx';
 
-import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';
+import { Consumer as AuthConsumer } from '../../contexts/authContext.jsx';
 
 class Signup extends Component {
   
