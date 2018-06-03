@@ -15,8 +15,9 @@ const userSchema = new mongoose.Schema ({
 	avatarUrl: { type: String },
 	gender: { type: String, enum: GENDERS, required: true },
 	connections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }],
-	ownedProjects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Projects' }],
-	invitedProjects: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Projects' }]
+	ownedProj: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Projects' }],
+	memberProj: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Projects' }],
+	invitedProj: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Projects' }]
 }, { timestamps: true });
 
 // easy validation of user password against hash
@@ -32,7 +33,4 @@ userSchema.pre('save', function(next) {
 	next();
 })
 
-module.exports = mongoose.model('Users', userSchema);
-
-
-
+mongoose.model('Users', userSchema);

@@ -44,7 +44,6 @@ app.use(express.static("./client/dist"));
 app.use(express.static("./client/public"))
 
 // Apply routes that wont serve react app
-
 app.use("/auth", auth);
 app.use("/api", passport.authenticate('jwt', { session: false }), api);
 

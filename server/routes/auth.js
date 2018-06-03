@@ -39,11 +39,5 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 })
 
-router.get('/private', passport.authenticate('jwt', { session: false }), (req, res, next) => {
-  res.send({yay: "u did it"})
-})
-
-
-
 
 module.exports = router;

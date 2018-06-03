@@ -15,8 +15,8 @@ import { AuthProvider } from './contexts/authContext.jsx';
 class App extends Component {
   render() {
     return (
-      <div className='App'>
-        <AuthProvider>
+      <AuthProvider>
+        <div className='App'>
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
@@ -24,8 +24,8 @@ class App extends Component {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route component={NotFound} />
           </Switch>
-        </AuthProvider>
-      </div>
+        </div>
+      </AuthProvider>
     );
   }
 }

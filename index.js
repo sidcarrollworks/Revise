@@ -1,13 +1,12 @@
-const server = require('./server/app.js');
+// env vars
 const { PORT, ADDRESS, MONGO_CONN } = require('./config');
 
-// Mongoose connection
+// Mongoose imports
 const mongoose = require("mongoose");
 mongoose.set('debug', true);
 mongoose.Promise = global.Promise;
 
-const User = require('./server/models/User.js');
-
+// Mongoose connection
 mongoose.connect(MONGO_CONN, {})
   .then(() => {
     console.log("Connected to MongoDB");
@@ -16,20 +15,16 @@ mongoose.connect(MONGO_CONN, {})
     console.log("Err, not connected to DB");
     console.log(err);
   });
-  
-// User.findById("507f1f77bcf86cd799439011").exec().then(user => {
-//   console.log(1, user);
-// })
-// .catch(err => {
-//   console.log(2, err);
-// })
-// User.findOne({ username: 'Raid55' }).exec().then(user => {
-//   console.log(1, user);
-// })
-// .catch(err => {
-//   console.log(2, err);
-// })
 
+// importing models before server INIT
+require('./server/models/User.js');
+require('./server/models/Project.js');
+require('./server/models/File.js');
+
+// Importing and INITING the server
+const server = require('./server/app.js');
+
+// Listening on port...
 server.listen(PORT, () => {
   console.log(`Web server starting...`);
   console.log(`App listening at ${ADDRESS}:${PORT}`);

@@ -35,6 +35,7 @@ class Login extends Component {
     this.props.handleLogin(this.state.formData);
   }
 
+
   render() {
     return (
       this.props.isLoading
@@ -50,7 +51,7 @@ class Login extends Component {
           {this.props.err ? <h5>Err with login</h5> : null}
           <input name="username" type="text" placeholder="Username"/>
           <input name="password" type="password" placeholder="Password"/>
-          <button id="formButton" type="submit">Login</button>
+          <button className="formButton" type="submit">Login</button>
           <p className="message">Not registered? <Link to="/signup">Create an account</Link></p>
         </form>
         <div className="logo"><Link to="/">Revise</Link></div>

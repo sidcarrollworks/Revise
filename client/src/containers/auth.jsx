@@ -15,11 +15,21 @@ class Auth extends Component {
 
   }
 
+//   write the fooken validator querrys and stuff
+
   render() {
     return (
-      
+      {
+          if (this.props.location.pathname == "/login")
+            // render login form
+          else if (this.props.location.pathname == "/signup")
+            // render signup form
+          else
+            // redirect to home
+      }
     );
   }
 }
 
-export default Login;
+// add context to container
+export default Auth;

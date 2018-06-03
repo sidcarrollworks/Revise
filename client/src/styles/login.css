@@ -27,7 +27,7 @@
 
 /* LOGIN CSS */
 
-#formButton {
+.formButton {
     text-transform: uppercase;
     outline: 0;
     background: rgb(42, 177, 255);
@@ -42,7 +42,7 @@
     border-radius: 5px;
 }
 
-#loginButton:hover {
+.loginButton:hover {
     background-color: rgb(119, 205, 255);
 }
 
