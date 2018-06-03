@@ -8,7 +8,7 @@ router.get('/me', (req, res) => {
       success: 1,
       user: req.user
     });
-  }, 2500);
+  }, Math.floor(Math.random() * 2400) + 800);
 })
 
 module.exports = router;
