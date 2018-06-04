@@ -15,7 +15,7 @@
 
       email: 1 /*invalid field, like if some internt wizard try to put iknowcomputars#twitter@1080kensintonAve.94102.internet */ ||
              2 /*taken email, this email was alredy signed up, add a link in the message box for forget password*/,
-      username: 1 /*invalid field, like if some fool try to put lordtrumpet$$onthestreets&my*fromheavenyo */ ||
+      username: 1 /*invalid field, like if some Pro hacker try to put bobby'Tables); DROP TABLE Users;-- */ ||
                 2 /*taken username, someone was quicker, and usernames have to be unique*/,
       gender: null /*there will always be a gender assigned no matter what, is on male as default so this is always null */
     }
