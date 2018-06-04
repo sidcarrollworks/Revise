@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const User = mongoose.model('Users');
 const Project = mongoose.model('Projects');
 
-const { isAuthProj, isProjOwn, invited } = require('../../utils/middleware/authOnProj.js');
+const { isAuthProj, isProjOwner, invited } = require('../../utils/middleware/authOnProj.js');
 
 
 // Creating new proj, revision,comment
@@ -97,7 +97,7 @@ router.post('/:pid/create_cmnt', isAuthProj, (req, res) => {
 
 // invite member, accept invite and uninvite someone
 
-router.post('/:pid/invite', isProjOwn, (req, res) => {
+router.post('/:pid/invite', isProjOwner, (req, res) => {
   const { pid } = req.params;
   let invitee = req.body.invitee
   
@@ -135,20 +135,20 @@ router.post('/:pid/invite', isProjOwn, (req, res) => {
   }
 });
 
-router.post('/:pid/uninvite', isProjOwn, (req, res) => {
+router.post('/:pid/uninvite', isProjOwner, (req, res) => {
   const { pid } = req.params;
   let unInvitee = req.body.unInvitee
   
-  User.update({ _id: unInvitee }, { $pullAll: { memberProj: pid , invitedProj: pid }})
+  User.update({ _id: unInvitee }, { $pull: { memberProj: pid , invitedProj: pid }})
     .then(infoUser => {
 
       if (infoUser.nModified != 0)
-        Project.update({ _id: pid }, { $pull: { members: unInvitee } })
+        Project.update({ _id: pid }, { $pull: { members: unInvitee, } })
           .then(infoProj => {
 
             if (infoProj.nModified != 0)
               res.status(200).json({
-                success: false
+                success: true
               })
             else
               throw new Error("no proj/mods")
@@ -167,9 +167,71 @@ router.post('/:pid/uninvite', isProjOwn, (req, res) => {
     })
 });
 
-router.post('/:pid/accept', invited, (req, res) => {
+// do more things such as making a pull and a push in one command and test the 
+// other commands and do some stuff, like add the user calls and the project calls
+// 2 proj calls, pull from invited and push into members and 
+// 2 user calls, push and pull from membersProj and invitedProj
+router.get('/:pid/accept', invited, (req, res) => {
   const { pid } = req.params;
+
+  Project.update({ _id: pid }, { $pull: { invited: req.user._id }, $push: { members: req.user._id } })
+    .then(infoProj => {
+      
+      if (infoProj.nModified != 0)
+        User.update({ _id: req.user._id }, { $pull: { invitedProj: pid }, $push: { memberProj: pid } })
+          .then(infoUser => {
+
+            if (infoUser.nModified != 0)
+              res.status(200).json({
+                success: true
+              })
+            else
+              throw new Error("no user/mods")
+          })
+          .catch(errU => {
+            throw errU;
+          })
+      else
+        throw new Error("no proj/mods");
+    })
+    .catch(err => {
+      console.log("/api/project/:pid/accept: ", err);
+      res.status(400).json({
+        success: false
+      })
+    });
 });
+//-------------------------------------------------------//
+
+// Archive project
+
+// pull project ids from invitedProj and memberProj in users
+// push into archivedProj for all users
+// switch isArchived to true in projects
+router.get('/:pid/archive', (req, res) => {
+  const { pid } = req.params;
+
+  Project.update({ _id: pid }, { isArchived: true })
+    .then(infoProj => {
+      if (infoProj.nModified != 0)
+        res.status(200).json({
+          success: true
+        })
+      else
+        throw new Error("no proj/mods");
+
+    })
+    .catch(err => {
+      console.log("/api/project/:pid/archive: ", err);
+      res.status(400).json({
+        success: false
+      })
+    });
+});
+// User.update(
+//   { _id: { $in: Array.from(new Set(infoProj.members.concat(invited).concat(owner))) } },
+//   { $pullAll: { memberProj: pid, ownedProj: pid }, $push: { memberProj: pid } },
+//   { multi: true })
 //-------------------------------------------------------//
 
 // get project info
