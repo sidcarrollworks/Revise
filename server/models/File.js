@@ -11,11 +11,4 @@ const fileSchema = new mongoose.Schema({
 }, { timestamps: true });
 
 
-// checks type of file and addes it to type
-// fileSchema.pre('save', function(next) {
-// 	if(this.isModified('password'))
-// 		this.password = bcrypt.hashSync(this.password, 10);
-// 	next();
-// })
-
 mongoose.model('Files', fileSchema);
