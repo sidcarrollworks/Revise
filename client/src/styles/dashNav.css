@@ -1,0 +1,27 @@
+.dashNav {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-areas: "1 2 3 4 5 6 7 8 9 10";
+    height: 50px;
+    background-color: white;
+    color: rgb(42, 177, 255);
+    border-bottom: 2px solid rgb(42, 177, 255);
+}
+
+.dashBtn {
+    grid-area: 1;
+    padding: 5px;
+}
+
+.dashNav a {
+    text-align: center;
+    text-decoration: none;
+    color: rgb(42, 177, 255);
+    font-size: 25px;
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.dashNav a:visited {
+    color: rgb(42,177,255);
+}

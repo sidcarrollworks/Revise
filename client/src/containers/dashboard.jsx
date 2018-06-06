@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+
 import '../styles/dashboard.css';
-import Sidebar from '../components/sidebar.jsx';
-import Projectlist from '../components/projectList.jsx';
+
+import Sidebar from '../components/dashboard/sidebar.jsx';
+import Projectlist from '../components/dashboard/projectList.jsx';
 import IsLoading from '../components/isLoading.jsx';
+import DashNav from '../components/navbar/dashNav.jsx';
 
 import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';
 
@@ -43,7 +46,7 @@ class Dashboard extends Component {
       <Redirect to="/"/>
       :
       <div className="dashboardGrid">
-        <div className="dashboardNav"> Nav holder</div>
+        <div className="dashboardNav"> <DashNav /></div>
         <div className="componentGrid">
           <div className="sidebar">
             <Sidebar
