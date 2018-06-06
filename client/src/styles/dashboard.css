@@ -4,16 +4,16 @@
     width: 100%;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 60px auto;
+    grid-template-rows: 50px auto;
     grid-row-gap: 5vh;
     grid-template-areas:
         "nav nav nav"
-        ". main ."
+        ". main .";
+    background-color: #e6ecf0;
 }
 
 .dashboardNav {
     grid-area: nav;
-    background-color: #333;
 }
 
 .componentGrid {

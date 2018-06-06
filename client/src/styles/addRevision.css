@@ -1,0 +1,5 @@
+.revForm {
+    float:right;
+    display: grid;
+    grid-template-rows: auto;
+}

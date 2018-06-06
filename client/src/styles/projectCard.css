@@ -1,0 +1,32 @@
+.projectCard {
+    display: grid;
+    width: 100%;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title settings"
+        "desc desc";
+    border: 1px solid rgb(42, 177, 255);
+    border-radius: 5px;
+    background-color: white;
+}
+
+.title {
+    grid-area: title;
+    text-align: left;
+}
+
+.title, .description {
+    margin-left: 10px;
+}
+
+.description {
+    grid-area: desc;
+    text-align: left;
+}
+
+.buttons {
+    grid-area: settings;
+}
