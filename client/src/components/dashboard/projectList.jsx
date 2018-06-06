@@ -8,7 +8,7 @@ class Projectlist extends Component {
   render() {
     return (
       <div className="projectList">
-        <h1>Projects</h1>
+        <h1>Projegcts</h1>
         <div className="newProject">
           <button onClick={() => this.simpleDialog.show()}>New Project</button>
           <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Create a new project">
