@@ -108,7 +108,6 @@ class Signup extends Component {
     e.preventDefault();
     if(this.checkFormBeforeSending())
       authClient.signUp(this.state.formData).then(res => {
-        console.log(res)
         if (res)
           this.props.history.push("/login");
         else

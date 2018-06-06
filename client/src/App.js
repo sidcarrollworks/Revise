@@ -13,6 +13,7 @@ import ProjectPage from './containers/projectPage.jsx';
 
 import { AuthProvider } from './contexts/authContext.jsx';
 
+
 class App extends Component {
   render() {
     return (

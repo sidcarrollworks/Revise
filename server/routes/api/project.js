@@ -28,7 +28,7 @@ router.post('/create', (req, res) => {
     } else {
       User.update({ _id: req.user._id }, { $push: { ownedProj: proj._id }})
         .then(user => {
-          return res.status(400).json({
+          return res.status(200).json({
             success: true,
             projId: proj._id
           })

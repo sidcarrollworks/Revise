@@ -17,9 +17,8 @@ client.getDashboardInfo = function() {
 	this.setDefaultHeader();
 	return this({ method: 'get', url: '/dashboard/info' })
 		.then(res => {
-			console.log(res)
 			if(res.data.success)
-				return res.data.user;
+				return res.data.info;
 			else
 				throw new Error("failed to get dashboard info");
 		})
@@ -36,6 +35,27 @@ client.getCurrentUser = function() {
 		})
 }
 
+client.createProject = function(projInfo) {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: '/project/create', data: projInfo })
+		.then(res => {
+			if(res.data.success)
+				return res.data.projId;
+			else
+				throw new Error("failed to create project");
+		})
+}
+
+client.getProjInfo = function(pid) {
+	this.setDefaultHeader();
+	return this({ method: 'get', url: '/project/' + pid })
+		.then(res => {
+			if(res.data.success)
+				return res.data.info;
+			else
+				throw new Error("failed to get prj info");
+		})
+}
 
 
 

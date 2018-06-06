@@ -35,7 +35,7 @@ class AuthProvider extends Component {
   handleLogout() {
     this.setState({ isAuth: false, user: null });
     authClient.logOut();
-    this.props.history.push('/hello');
+    this.props.history.push('/');
   }
 
   componentWillMount() {

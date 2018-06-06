@@ -1,30 +1,48 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router-dom';
-import SkyLight from 'react-skylight';
+import { Link } from 'react-router-dom';
+
 import '../../styles/projectList.css';
 
 
 class Projectlist extends Component {
   render() {
+    const { ownedProj, memberProj, invitedProj } = this.props.projects;
+    // console.log("plist PROPS", this.props)
     return (
-      <div className="projectList">
-        <h1>Projects</h1>
-        <div className="newProject">
-          <button onClick={() => this.simpleDialog.show()}>New Project</button>
-          <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Create a new project">
-            <form className='projectFrom'>
-              <input name="title" type="text" placeholder="Project Title"/>
-              <textarea name="text" rows="3" cols="30" placeholder="Project description and info..."></textarea>
-              <button type="submit">Create Project</button>
-            </form>
-          </SkyLight>
-        </div>
-        <div className="projects">
-          <div className="projectLink">Project something</div>
-          <div className="projectLink">Project 2</div>
-          <div className="projectLink">Project 3</div>
-          <div className="projectLink">Project 4</div>
-        </div>
+      !this.props.projects
+      ?
+      <h3> Your projects could not be loaded </h3>
+      :
+      <div className="projects">
+        <h4>My Projects</h4>
+        { ownedProj.map(el => 
+          !el.isArchived ? 
+          <Link key={el._id} to={'project/' + el._id}>
+            <div className="projectLink">{el.title}</div>
+          </Link> : null
+        ) }
+        <h4>Active Projects</h4>
+        { memberProj.map(el => 
+          !el.isArchived ? 
+          <Link key={el._id} to={'project/' + el._id}>
+            <div className="projectLink">{el.title}</div>
+          </Link> : null
+        ) }
+        <h4>Invited Projects</h4>
+        { invitedProj.map(el => 
+          !el.isArchived ? 
+          <Link key={el._id} to={'project/' + el._id}>
+            <div className="projectLink">{el.title}</div>
+          </Link> : null
+        ) }
+        <h4>Archived Projects</h4>
+        { [...ownedProj, ...memberProj, ...invitedProj].map(el => 
+          el.isArchived ? 
+          <Link key={el._id} to={'project/' + el._id}>
+            <div className="projectLink">{el.title}</div>
+          </Link> : null
+        ) }
+        <div className="projectLink">Project 4</div>
       </div>
     );
   }

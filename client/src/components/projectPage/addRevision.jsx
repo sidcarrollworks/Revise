@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
+
 import '../../styles/addRevision.css';
 
+import apiClient from '../../utils/api.js';
+
 class AddRev extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      revisionForm: {
+        title: "",
+        body: ""
+      }
+    }
+  }
+
 
   render() {
     return (
