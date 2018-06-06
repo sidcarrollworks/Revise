@@ -15,8 +15,9 @@ client.setDefaultHeader = function() {
 
 client.getDashboardInfo = function() {
 	this.setDefaultHeader();
-	return this({ method: 'get', url: '/dashboard' })
+	return this({ method: 'get', url: '/dashboard/info' })
 		.then(res => {
+			console.log(res)
 			if(res.data.success)
 				return res.data.user;
 			else

@@ -25,12 +25,13 @@ module.exports = new PassportLocalStrategy({
 
   const newUser = new User(userData);
 
-  newUser.save(err => {
+  newUser.save((err, info) => {
     if (err) {
       console.log("signup-strategy", err);
       done(err);
+    } else {
+      done(null);
     }
-    done(null);
   });
 
 });

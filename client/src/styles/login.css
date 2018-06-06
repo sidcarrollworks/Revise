@@ -27,6 +27,14 @@
 
 /* LOGIN CSS */
 
+select {
+    -webkit-appearance: none;
+    /*webkit browsers */
+    -moz-appearance: none;
+    /*Firefox */
+    appearance: none;
+}
+
 .formButton {
     text-transform: uppercase;
     outline: 0;
@@ -56,6 +64,10 @@
     box-sizing: border-box;
     font-size: 14px;
     border-radius: 5px;
+}
+
+.loginWrapper .wrongInput {
+    border: 2.4px solid red
 }
 
 .loginWrapper a:hover {

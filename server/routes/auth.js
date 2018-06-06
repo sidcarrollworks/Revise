@@ -4,15 +4,18 @@ const router = express.Router();
 
 router.post('/signup', (req, res, next) => {
   return passport.authenticate('signup', err => {
-    if (err)
+    if (err) {
+      console.log("/signup auth: ", err)
       return res.status(400).json({
         success: false,
         message: err.message
       });
+    } else {
+      return res.json({
+        success: true
+      });
+    }
 
-    return res.json({
-      success: true
-    });
   })(req, res, next);
 })
 

@@ -22,7 +22,7 @@ class AuthProvider extends Component {
 
   handleLogin(credentials) {
     authClient.logIn(credentials).then(res => {
-      this.setState({ isAuth: true, user: res, isLoading: false });
+      this.setState({ isAuth: true, user: res, isLoading: false, err: false });
       this.props.history.push('/dashboard');
     })
     .catch(err => {
