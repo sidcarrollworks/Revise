@@ -18,14 +18,18 @@ class ProjectCard extends Component {
           <p>{description}</p>
         </div>
         <div className="buttons">
-          { isArchived ? <h4> this project is archived </h4> : <button>archive project</button>}
-          <button onClick={() => this.simpleDialog.show()}>Member settings</button>
-          <SkyLight dialogStyles={membersSLCss} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Members">
-            <div>
-              { members.map(el => <span>{el.username}</span>) }
+          { isArchived ? <h4> this project is archived </h4> : <button id="archiveProjBtn">ARCHIVE</button>}
+          <button id="projMemberBtn" onClick={() => this.simpleDialog.show()}>MEMBERS</button>
+          <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Add or remove members">
+            <div className="memberSettings">
+              <form className="searchMembers">
+                <input type="text"/>
+                <button type="submit">Add </button>
+              </form>
+              <div id="memberList">
+                { members.map(el => <span>{el.username}<button id="removeBtn">remove</button></span>) }
+              </div>
             </div>
-            <button>invite</button>
-            <button>uninvite</button>
           </SkyLight>
         </div>
       </div>

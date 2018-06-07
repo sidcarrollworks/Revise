@@ -1,5 +1,55 @@
 .revForm {
-    float:right;
     display: grid;
-    grid-template-rows: auto;
+    height: 300px;
+    grid-template-rows: auto 1fr auto;
+    grid-row-gap: 10px;
+    grid-template-areas:
+        "title"
+        "description"
+        "button";
+}
+
+#addRevBtn {
+    padding: 10px;
+    background: white;
+    border: 1px solid rgb(99, 215, 105);
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(99, 215, 105);
+    transition: background .1s ease-in;
+    font-weight: bold;
+}
+
+#addRevBtn:hover {
+    background: rgba(99, 215, 105, 0.082);
+}
+
+#createRevText {
+    resize: none;
+}
+
+#createRevTitle {
+    height: 30px;
+}
+
+#createRevTitle, #createRevText {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(99, 215, 105);
+}
+
+#createRevBtn {
+    width: 130px;
+    margin: 0 auto;
+    color: white;
+    background: rgb(99, 215, 105);
+    border-radius: 5px;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+#createRevBtn:hover {
+    background: rgba(99, 215, 105, 0.85)
 }

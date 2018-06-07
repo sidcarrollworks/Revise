@@ -1,14 +1,14 @@
 .projectContainer {
     width: 100%;
-    height: auto;
-    background-color: #e6ecf0;
+    height: 100%;
+    background-color: #fafafa;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: auto;
     grid-template-areas:
         "nav nav nav"
         ". main .";
-    grid-row-gap: 40px;
+    grid-row-gap: 20px;
     justify-items: center;
 }
 
@@ -20,6 +20,9 @@
 .projectMain {
     grid-area: main;
     width: 50vw;
+    background: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    padding: 20px;
 }
 
 .addRev {
