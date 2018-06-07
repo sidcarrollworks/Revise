@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 
 import '../../styles/projectCard.css';
+const membersSLCss = {
+  backgroundColor: 'green'
+};
 
 class ProjectCard extends Component {
   render() {
@@ -17,7 +20,7 @@ class ProjectCard extends Component {
         <div className="buttons">
           { isArchived ? <h4> this project is archived </h4> : <button>archive project</button>}
           <button onClick={() => this.simpleDialog.show()}>Member settings</button>
-          <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Members">
+          <SkyLight dialogStyles={membersSLCss} hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Members">
             <div>
               { members.map(el => <span>{el.username}</span>) }
             </div>

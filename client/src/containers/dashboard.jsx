@@ -174,9 +174,7 @@ class Dashboard extends Component {
 
               {/* Project list is generated here */}
               <Projectlist projects={dashboardInfo ? dashboardInfo : false} />
-              <Link to="project/5b13189e18daec30b8a0eb97">
-                <h4> lol </h4>
-              </Link>
+
             </div>
           </div>
         </div>

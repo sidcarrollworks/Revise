@@ -17,7 +17,15 @@ class ProjectPage extends Component {
     super(props);
 
     this.state = {
-      projInfo: null,
+      members: [],
+      invited: [],
+      isArchived: null,
+      _id: "",
+      title: "",
+      description: "",
+      owner: {},
+      revisions: [],
+      createdAt: "",
       isProjLoading: true,
       err: false
     }
@@ -28,8 +36,8 @@ class ProjectPage extends Component {
   fetchData(pid) {
     apiClient.getProjInfo(pid)
       .then(info => {
-        console.log(info)
-        this.setState({isProjLoading: false, projInfo: info});
+        info.revisions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        this.setState({isProjLoading: false, ...info});
       })
       .catch(err => {
         console.log("proj page info: ", err);
@@ -52,7 +60,8 @@ class ProjectPage extends Component {
 
   render() {
     // console.log(this.props.match.params.id)
-    const { projInfo, isProjLoading, err } = this.state;
+    const { title, description, members, isArchived, revisions, isProjLoading, err } = this.state;
+  
     if (isProjLoading)
       return <IsLoading />
     else if (err)
@@ -74,14 +83,14 @@ class ProjectPage extends Component {
           </div>
             <div className="projectMain">
               <ProjectCard projCard={{
-                title: projInfo.title,
-                description: projInfo.description,
-                members: projInfo.members,
-                isArchived: projInfo.isArchived
+                title: title,
+                description: description,
+                members: members,
+                isArchived: isArchived
               }}/>
-              {projInfo.isArchived ? <h4> this project is archived </h4> : <AddRevision />}
-              {/* <RevisionCard /> */}
+              {isArchived ? <h4> this project is archived </h4> : <AddRevision />}
               
+              {revisions.map(el => <RevisionCard key={el._id} rev={el} />)}
             </div>
         </div>
       );

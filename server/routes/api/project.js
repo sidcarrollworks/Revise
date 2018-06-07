@@ -201,6 +201,37 @@ router.get('/:pid/accept', invited, (req, res) => {
       })
     });
 });
+
+router.get('/:pid/decline', invited, (req, res) => {
+  const { pid } = req.params;
+
+  Project.update({ _id: pid }, { $pull: { invited: req.user._id } })
+    .then(infoProj => {
+      
+      if (infoProj.nModified != 0)
+        User.update({ _id: req.user._id }, { $pull: { invitedProj: pid } })
+          .then(infoUser => {
+
+            if (infoUser.nModified != 0)
+              res.status(200).json({
+                success: true
+              })
+            else
+              throw new Error("no user/mods")
+          })
+          .catch(errU => {
+            throw errU;
+          })
+      else
+        throw new Error("no proj/mods");
+    })
+    .catch(err => {
+      console.log("/api/project/:pid/decline: ", err);
+      res.status(400).json({
+        success: false
+      })
+    });
+});
 //-------------------------------------------------------//
 
 // Archive project
@@ -208,7 +239,7 @@ router.get('/:pid/accept', invited, (req, res) => {
 // pull project ids from invitedProj and memberProj in users
 // push into archivedProj for all users
 // switch isArchived to true in projects
-router.get('/:pid/archive', (req, res) => {
+router.get('/:pid/archive', isProjOwner, (req, res) => {
   const { pid } = req.params;
 
   Project.update({ _id: pid }, { isArchived: true })

@@ -57,6 +57,41 @@ client.getProjInfo = function(pid) {
 		})
 }
 
+client.archiveProj = function(pid) {
+	this.setDefaultHeader();
+	return this({ method: 'get', url: `/project/${pid}/archive` })
+		.then(res => {
+			if(res.data.success)
+				return res.data.info;
+			else
+				throw new Error("failed to get prj info");
+		})
+}
+
+client.createRev = function(pid, revInfo) {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: `/project/${pid}/create_rev`, data: revInfo })
+		.then(res => {
+			if(res.data.success)
+				return res.data.success;
+			else
+				throw new Error("failed  create revision");
+		})
+}
+
+
+client.createCmnt = function(pid, cmntInfo) {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: `/project/${pid}/create_cmnt`, data: cmntInfo })
+		.then(res => {
+			if(res.data.success)
+				return res.data.success;
+			else
+				throw new Error("failed create cmnt");
+		})
+}
+
+
 
 
 export default client
