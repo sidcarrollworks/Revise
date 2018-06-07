@@ -147,7 +147,7 @@ class Signup extends Component {
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
-          <button id="formButton" type="submit">Sign Up</button>
+          <button className="formButton" type="submit">Sign Up</button>
           <p className="message">Already have an account? <Link to="/login">Login here</Link></p>
         </form>
         <div className="logo"><Link to="/">Revise</Link></div>
