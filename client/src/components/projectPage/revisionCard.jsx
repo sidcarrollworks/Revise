@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import '../../styles/revisionCard.css';
 import UserAvatar from 'react-user-avatar';
+
+import '../../styles/revisionCard.css';
 
 import RevComment from './commentCard.jsx';
 import AddComment from './addComment.jsx';
+import FileCard from './fileCard.jsx';
 
 class revisionCard extends Component {
   render() {
@@ -18,7 +20,7 @@ class revisionCard extends Component {
               <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" />
           </div>
           <div className="revBody">
-              {isFile ? null : <p>{body}</p>}
+              {isFile ? <FileCard /> : <p>{body}</p>}
           </div>
           <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
           <div className="gridComment">

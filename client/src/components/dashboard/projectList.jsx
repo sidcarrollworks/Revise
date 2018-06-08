@@ -31,9 +31,13 @@ class Projectlist extends Component {
         <h2>Invited Projects</h2>
         { invitedProj.map(el => 
           !el.isArchived ? 
-          <Link key={el._id} to={'/project/' + el._id}>
-            <div className="projectLink">{el.title}</div>
-          </Link> : null
+          <div key={el.id} className="invitedLink">
+            <span>{el.title}</span>
+            <div className="inviteBtns">
+              <button id="accept">Accept</button>
+              <button id="deny">Deny</button>
+            </div>
+          </div> : null
         ) }
         <h2>Archived Projects</h2>
         { [...ownedProj, ...memberProj, ...invitedProj].map(el => 

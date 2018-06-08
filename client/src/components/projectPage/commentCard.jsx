@@ -8,9 +8,9 @@ class RevComment extends Component {
     const { owner, text, createdAt } = this.props.cmnt;
     return (
       <div className="revComments">
-      <UserAvatar size="40" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" />
-        <h4>{owner.username} - <span style={{color: "grey", fontSize:"12px"}}>{new Date(createdAt).toString()}</span></h4>
-        <p>{text}</p>
+        <div className="commentUser"><UserAvatar size="40" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" /></div>
+        <h4 className="commentDate">{owner.username} - <span style={{color: "grey", fontSize:"12px"}}>{new Date(createdAt).toString()}</h4>
+        <p className="commentText">{text}</p>
       </div>
     )
   }
