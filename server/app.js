@@ -1,3 +1,4 @@
+// importing modules
 const bodyParser = require('body-parser');
 const passport   = require('passport');
 const express    = require('express');
@@ -15,8 +16,8 @@ const auth = require("./routes/auth.js");
 const app = express();
 
 // body parser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 
 // Initialize passport
 app.use(passport.initialize());
