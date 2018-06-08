@@ -18,7 +18,7 @@ class revisionCard extends Component {
               <h2>{title} - <span className="revDate">{new Date(createdAt).toString()}</span></h2>
           </div>
           <div className="revUser">
-              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" />
+              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 7)}.jpeg`} name="Don Cheadle" />
           </div>
           <div className="revBody">
               {isFile ? <FileCard rid={_id} pid={pid} filename={filename} filesize={filesize} /> : <p>{body}</p>}
