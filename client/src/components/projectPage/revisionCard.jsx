@@ -10,6 +10,7 @@ import FileCard from './fileCard.jsx';
 class revisionCard extends Component {
   render() {
     const { title, body, isFile, _id, comments, owner, createdAt } = this.props.rev
+    const { isArchived } = this.props
     return (
       <>
         <div className="revisionCard">
@@ -24,7 +25,7 @@ class revisionCard extends Component {
           </div>
           <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
           <div className="gridComment">
-              <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />
+              {isArchived ? null : <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />}
           </div>
         </div>
 

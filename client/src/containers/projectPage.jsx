@@ -95,7 +95,7 @@ class ProjectPage extends Component {
               />
               {isArchived ? <h4> this project is archived </h4> : <AddRevision refresh={this.fetchData} pid={id} />}
               
-              {revisions.map(el => <RevisionCard key={el._id} rev={el} refresh={this.fetchData} pid={id} />)}
+              {revisions.map(el => <RevisionCard key={el._id} isArchived={isArchived} rev={el} refresh={this.fetchData} pid={id} />)}
             </div>
         </div>
       );
