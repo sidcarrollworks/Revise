@@ -13,6 +13,12 @@
     box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
 }
 
+.isArchived {
+    background-color: rgb(210, 231, 250);
+    border: 1px solid rgb(96, 151, 233);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+
 .title {
     grid-area: title;
     text-align: left;

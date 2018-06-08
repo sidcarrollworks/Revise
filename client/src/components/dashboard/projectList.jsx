@@ -3,8 +3,47 @@ import { Link } from 'react-router-dom';
 
 import '../../styles/projectList.css';
 
+import apiClient from '../../utils/api.js';
 
 class Projectlist extends Component {
+
+  constructor(props) {
+    super(props);
+
+
+    this.handleYes = this.handleYes.bind(this);
+    this.handleNo = this.handleNo.bind(this);
+  }
+
+ handleYes(e) {
+    e.preventDefault();
+    const { refresh } = this.props;
+    apiClient.acceptInvite(e.target.name)
+      .then(res =>{
+        console.log(res);
+        refresh();
+      })
+      .catch(err => {
+        console.log("Yes error: ", err);
+        // this.setState({err: true});
+      })
+
+  }
+
+  handleNo(e) {
+    e.preventDefault();
+    const { refresh } = this.props;
+    apiClient.rejectInvite(e.target.name)
+      .then(res =>{
+        console.log(res);
+        refresh();
+      })
+      .catch(err => {
+        console.log("Yes error: ", err);
+        // this.setState({err: true});
+      })
+  }
+
   render() {
     const { ownedProj, memberProj, invitedProj } = this.props.projects;
     // console.log("plist PROPS", this.props)
@@ -15,7 +54,7 @@ class Projectlist extends Component {
       :
       <div className="projects">
         <h2>My Projects</h2>
-        { ownedProj.map(el => 
+        { ownedProj.map(el =>
           !el.isArchived ? 
           <Link key={el._id} to={'/project/' + el._id}>
             <div className="projectLink">{el.title}</div>
@@ -34,8 +73,8 @@ class Projectlist extends Component {
           <div key={el.id} className="invitedLink">
             <span>{el.title}</span>
             <div className="inviteBtns">
-              <button id="accept">Accept</button>
-              <button id="deny">Deny</button>
+              <button onClick={this.handleYes} name={el._id} id="accept">Accept</button>
+              <button onClick={this.handleNo} name={el._id} id="deny">Deny</button>
             </div>
           </div> : null
         ) }

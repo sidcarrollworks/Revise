@@ -79,7 +79,6 @@ client.createRev = function(pid, revInfo) {
 		})
 }
 
-
 client.createCmnt = function(pid, cmntInfo) {
 	this.setDefaultHeader();
 	return this({ method: 'post', url: `/project/${pid}/create_cmnt`, data: cmntInfo })
@@ -113,6 +112,27 @@ client.removeMember = function(pid, info) {
 		})
 }
 
+client.acceptInvite = function(pid) {
+	this.setDefaultHeader();
+	return this({ method: 'get', url: `/project/${pid}/accept` })
+		.then(res => {
+			if(res.data.success)
+				return res.data.success;
+			else
+				throw new Error("failed to get accept");
+		})
+}
+
+client.rejectInvite = function(pid) {
+	this.setDefaultHeader();
+	return this({ method: 'get', url: `/project/${pid}/decline` })
+		.then(res => {
+			if(res.data.success)
+				return res.data.success;
+			else
+				throw new Error("failed to get accept");
+		})
+}
 
 
 export default client

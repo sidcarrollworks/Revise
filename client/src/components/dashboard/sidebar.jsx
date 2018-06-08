@@ -5,15 +5,16 @@ import '../../styles/sidebar.css';
 
 class Sidebar extends Component {
   render() {
+    const { avatarUrl, firstName, lastName, username, handleLogout } = this.props.user;
     return (
       <div className="">
         <div className="userInfo">
-          <UserAvatar size="200" src="https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODUxNzE2NjIz/don-cheadle-538188-1-402.jpg" name={this.props.user.firstName} />
-          <h2>{this.props.user.firstName}</h2>
-          <h4>{this.props.user.lastName}</h4>
-          <p>@{this.props.user.username}</p>
+          <UserAvatar size="200" src={avatarUrl ? avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name={username} />
+          <h2>{firstName}</h2>
+          <h4>{lastName}</h4>
+          <p>@{username}</p>
         </div>
-        <button id="dashLogout" onClick={this.props.handleLogout}>Log out</button>
+        <button id="dashLogout" onClick={handleLogout}>Log out</button>
       </div>
     );
   }

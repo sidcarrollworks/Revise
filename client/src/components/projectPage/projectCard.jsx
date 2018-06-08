@@ -13,7 +13,7 @@ class ProjectCard extends Component {
   render() {
     const { title, description, members, isArchived, refresh, pid } = this.props
     return (
-      <div className="projectCard">
+      <div className={`projectCard ${isArchived ? "isArchived" : ""}`}>
         <div className="title">
             <h1>{title}</h1>
         </div>
@@ -21,7 +21,7 @@ class ProjectCard extends Component {
           <p>{description}</p>
         </div>
         <div className="buttons">
-          { isArchived ? <h4> this project is archived </h4> : <Archive /> }
+          { isArchived ? null : <Archive pid={pid} refresh={refresh} /> }
           { isArchived ? null : <Members members={members} refresh={refresh} pid={pid} /> }
         </div>
       </div>

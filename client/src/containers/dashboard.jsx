@@ -32,6 +32,7 @@ class Dashboard extends Component {
       isAuth: null
     }
     
+
     this.fetchData = this.fetchData.bind(this);
     this.validateProjCreate = this.validateProjCreate.bind(this);
     this.handleProjUpdate = this.handleProjUpdate.bind(this);
@@ -87,23 +88,11 @@ class Dashboard extends Component {
     this.setState({areProjLoading: true});
   }
 
+
   componentDidMount() {
     // console.log("wagadoudou")
     this.fetchData();
   }
-
-  // UNSAFE_componentWillUpdate() {
-  //   console.log("will do its thing stupid")
-  // }
-
-  // UNSAFE_componentWillReceiveProps(nextProps) {
-  //   console.log("LASFMKAEJNF", nextProps)
-  // }
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   console.log("WAnfdiuahofih")
-  //   console.log(nextProps, nextState)
-  //   return true;
-  // }
 
   componentDidUpdate(prevProps, prevState) {
     const { dashboardInfo, areProjLoading } = this.state;
@@ -112,24 +101,6 @@ class Dashboard extends Component {
     if (dashboardInfo === null && areProjLoading === false)
       this.fetchData();
   }
-
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   console.log("wtf")
-  //   console.log(nextProps, prevState)
-  //   if (!nextProps.user){
-  //     console.log(1)
-  //     return null;
-  //   }else if (nextProps.user.isAuth !== prevState.isAuth){
-  //     console.log(2)
-  //     return {
-  //       isAuth: nextProps.user.isAuth
-  //     }
-  //   }else{
-  //     console.log(3)
-  //     return null;
-  //   }
-  // }
-
 
   render() {
     const { title, description } = this.state.projFormData;
@@ -172,7 +143,7 @@ class Dashboard extends Component {
             </div>
 
             {/* Project list is generated here */}
-            <Projectlist projects={dashboardInfo ? dashboardInfo : false} />
+            <Projectlist projects={dashboardInfo ? dashboardInfo : false} refresh={this.fetchData} />
 
           </div>
         </div>
