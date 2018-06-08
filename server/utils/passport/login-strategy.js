@@ -1,8 +1,10 @@
 const jwt = require('jsonwebtoken');
 const PassportLocalStrategy = require('passport-local').Strategy;
 
-const User = require('mongoose').model('User');
-const { JWT_SECRET } = require('../../config');
+const mongoose = require('mongoose');
+const User = mongoose.model('Users');
+
+const { JWT_SECRET } = require('../../../config');
 
 
 module.exports = new PassportLocalStrategy({
@@ -12,20 +14,20 @@ module.exports = new PassportLocalStrategy({
 }, (username, password, done) => {
 
   // find a user by email address
-  return User.findOne({ username: username }).exec()
+  User.findOne({ username: username }).exec()
     // check for user
     .then(user => {
       if (user)
         return user;
       else
-        return done(new Error('Incorrect email or password'));
+       throw new Error('Incorrect email or password');
     })
     //check for password
     .then(user => {
       if (user.validPassword(password))
         return user;
       else
-        return done(new Error('Incorrect email or password'));
+        throw new Error('Incorrect email or password');
     })
     // sign and return token
     .then(user => {
@@ -33,12 +35,12 @@ module.exports = new PassportLocalStrategy({
         expiresIn: "7d",
         issuer: 'revise.work'
       });
-      return done(null, token, user);
+      done(null, token, user);
     })
     // catch any errors
     .catch(err => {
       console.log("Login-Strategy:", err);
-      return done(err);
+      done(err);
     });
 
   });

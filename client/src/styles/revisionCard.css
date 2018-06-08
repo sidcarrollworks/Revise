@@ -1,0 +1,120 @@
+.revisionCard {
+    width: 90%;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr auto ;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "title user"
+        "body body"
+        "id comment";
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 0 solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+
+.revTitle {
+    grid-area: title;
+    text-align: left;
+}
+
+.revIdHolder {
+    grid-area: id;
+    text-align: left;
+}
+
+.revId {
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.revDate {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgb(172, 172, 172);
+}
+
+.revBody {
+    grid-area: body;
+    text-align: left;
+}
+
+.gridComment {
+    grid-area: comment;
+}
+
+.revComments {
+    background-color: white;
+    border-radius: 5px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 10px;
+    overflow:auto;
+}
+
+/* .revComments:after {
+    overflow: auto;
+} */
+
+.revComments h4, .revComments p {
+    margin: 0;
+    float: left;
+}
+
+
+
+/* REVISION COMMENT CSS */
+
+.revComments {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-row-gap: 5px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas:
+        "avatar date"
+        "avatar comment";
+}
+
+.commentUser {
+    grid-area: avatar;
+}
+
+.commentDate {
+    grid-area: date;
+    text-align: left;
+    color: rgb(86, 196, 240);
+    font-weight: normal;
+}
+
+.commentText {
+    grid-area: comment;
+    text-align: left;
+    font-size: 14px;
+}
+
+.fileCard {
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+
+.fileCard img {
+    height: 50px;
+    width: 50px;
+    grid-area: body;
+    margin: 0 auto;
+}
+
+.fileCard button {
+    border:0;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+}

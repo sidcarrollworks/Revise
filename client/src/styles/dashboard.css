@@ -1,0 +1,98 @@
+/* CONTAINTER GRID SETUP */
+.dashboardGrid {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 7fr;
+    grid-template-rows: 50px auto;
+    grid-column-gap: 10px;
+    grid-template-areas:
+        "nav nav"
+        "sidebar main";
+    background-color: #fafafa;
+}
+
+.dashboardNav {
+    grid-area: nav;
+}
+
+.projectPanel {
+    grid-area: main;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.projectForm {
+    display: grid;
+    height: 300px;
+    grid-template-rows: auto 1fr auto;
+    grid-row-gap: 10px;
+    grid-template-areas:
+        "title"
+        "description"
+        "button";
+}
+
+#newProjectBtn {
+    grid-area: button;
+    background-color: rgb(99, 215, 105);
+    color: white;
+    padding: 5px;
+    font-size: 24px;
+    border: 0;
+    border-radius: 5px;
+    float: right;
+    height: 100%;
+    padding: 0 20px;
+    cursor: pointer;
+    transition: background-color .1s ease-in;
+}
+
+#newProjectBtn:hover {
+    background-color: rgba(99, 215, 105, 0.85);
+    
+}
+
+#createProjectDesc {
+    resize: none;
+}
+
+#createProjectTitle {
+    height: 30px;
+}
+
+#createProjectTitle, #createProjectDesc {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(99, 215, 105);
+}
+
+#createProjectBtn {
+    width: 130px;
+    margin: 0 auto;
+    color: white;
+    background: rgb(99, 215, 105);
+    border-radius: 5px;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+#createProjectBtn:hover {
+    background: rgba(99, 215, 105, 0.85)
+}
+
+@media only screen and (max-width: 600px) {
+    .dashboardGrid {
+        grid-template-columns: auto;
+        grid-template-rows: 50px auto auto;
+        grid-column-gap: 10px;
+        grid-template-areas:
+            "nav"
+            "main"
+            "sidebar";
+    }  
+}
