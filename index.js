@@ -19,7 +19,6 @@ mongoose.connect(MONGO_CONN, {})
 // importing models before server INIT
 require('./server/models/User.js');
 require('./server/models/Project.js');
-require('./server/models/File.js');
 
 // Importing and INITING the server
 const server = require('./server/app.js');

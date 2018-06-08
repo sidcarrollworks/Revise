@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import '../styles/projectPage.css';
 
 import ProjectCard from '../components/projectPage/projectCard.jsx';

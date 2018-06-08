@@ -8,7 +8,6 @@ import AddComment from './addComment.jsx';
 class ProjectCard extends Component {
   render() {
     const { title, body, _id, comments, owner, createdAt } = this.props.rev
-    console.log("lol", comments)
     return (
         <div>
             <div className="revisionCard">

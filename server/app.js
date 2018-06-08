@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const passport   = require('passport');
 const express    = require('express');
 const morgan     = require("morgan");
+const chalk      = require('chalk');
 const path       = require('path');
 
 // importing custom middleware
@@ -31,12 +32,12 @@ passport.use('jwt', jwtStrategy);
 
 // app.use(morgana)
 // Morgan logger //
-
-app.use(morgan(':user-agent'));
-app.use(morgan('[:date[clf]]'));
-app.use(morgan('":method | :url | HTTP/:http-version"'));
-app.use(morgan(':status | :res[content-length] | :response-time ms'));
-app.use(morgan('........................................'));
+app.use(morgan(chalk.grey('........................................')));
+app.use(morgan(chalk.blue(':user-agent')));
+app.use(morgan(chalk.red.bold('[:date[clf]]')));
+app.use(morgan(chalk.yellow.bold('":method | :url | HTTP/:http-version"')));
+app.use(morgan(chalk.cyan(':status | :res[content-length] | :response-time ms')));
+app.use(morgan(chalk.grey('........................................')));
 app.use(morgan(' '));
 // end of logger info //
 

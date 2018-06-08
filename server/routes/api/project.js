@@ -48,7 +48,8 @@ router.post('/:pid/create_rev', isAuthProj, (req, res) => {
   let newRevision = {
     title: req.body.title,
     body: req.body.body,
-    owner: req.user._id
+    owner: req.user._id,
+    isFile: req.body.isFile
   };
   if (req.body.file)
     newRevision.file = req.body.file;
@@ -274,7 +275,6 @@ router.get('/:pid', isAuthProj, (req, res) => {
     .populate('owner', 'avatarUrl username _id')
     .populate('members', 'avatarUrl username _id')
     .populate('invited', 'avatarUrl username _id')
-    .populate('revisions.file', 'name type path size type')
     .populate('revisions.owner', 'avatarUrl username _id')
     .populate('revisions.comments.owner', 'avatarUrl username _id')
     .exec()

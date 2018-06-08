@@ -13,10 +13,10 @@ const commentSchema = new mongoose.Schema({
 // revision sub schema
 const revisionSchema = new mongoose.Schema({
 	// revId: { type: String, minlength: 8, maxlength: 8, required: true, unique: true },
-	title: { type: String, maxlength: 90, required: true },
+	title: { type: String, maxlength: 120, required: true },
 	comments: [commentSchema],
 	body:  { type: String, required: false },
-	file: { type: mongoose.Schema.Types.ObjectId, ref: 'Files', required: false },
+	isFile: { type: Boolean, required: true },
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true }
 }, { timestamps: true });
 

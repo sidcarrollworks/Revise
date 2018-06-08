@@ -79,7 +79,6 @@ router.get('/:pid/:rid/download/', (req, res) => {
 		})
 })
 
-// router.get('/:pid/:rid/view', isAuthProj, (req, res) => {
 
 // });
 
