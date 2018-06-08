@@ -284,7 +284,7 @@ router.get('/:pid', isAuthProj, (req, res) => {
           success: true,
           info: info
         })
-      }, Math.floor(Math.random() * 2400) + 800);
+      }, Math.floor(Math.random() * 1700) + 200);
     })
     .catch(err => {
       console.log('api/projects/:id ', err);

@@ -73,9 +73,9 @@ client.createRev = function(pid, revInfo) {
 	return this({ method: 'post', url: `/project/${pid}/create_rev`, data: revInfo })
 		.then(res => {
 			if(res.data.success)
-				return res.data.success;
+				return res.data.info;
 			else
-				throw new Error("failed  create revision");
+				throw new Error("failed create revision");
 		})
 }
 

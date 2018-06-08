@@ -32,8 +32,8 @@ class ProjectPage extends Component {
     this.fetchData = this.fetchData.bind(this);
   }
 
-  fetchData(pid) {
-    apiClient.getProjInfo(pid)
+  fetchData() {
+    apiClient.getProjInfo(this.props.match.params.id)
       .then(info => {
         info.revisions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         this.setState({isProjLoading: false, ...info});
@@ -47,20 +47,19 @@ class ProjectPage extends Component {
 
   componentDidMount() {
     console.log("lol", this.props.match.params.id)
-    this.fetchData(this.props.match.params.id);
+    this.fetchData();
   }
 
   componentDidUpdate(prevProps, prevState) {
     const { projInfo, isProjLoading } = this.state;
   
     if (projInfo === null && isProjLoading === false)
-      this.fetchData(this.props.match.params.id);
+      this.fetchData();
   }
 
   render() {
     // console.log(this.props.match.params.id)
     const { title, description, members, isArchived, revisions, isProjLoading, err } = this.state;
-  
     if (isProjLoading)
       return <IsLoading />
     else if (err)
@@ -87,10 +86,9 @@ class ProjectPage extends Component {
                 members: members,
                 isArchived: isArchived
               }}/>
-              {isArchived ? <h4> this project is archived </h4> : <AddRevision />}
+              {isArchived ? <h4> this project is archived </h4> : <AddRevision refresh={this.fetchData} pid={this.props.match.params.id} />}
               
-              {revisions.map(el => <RevisionCard key={el._id} rev={el} />)}
-              <RevisionCard />
+              {revisions.map(el => <RevisionCard key={el._id} rev={el} refresh={this.fetchData} />)}
             </div>
         </div>
       );
