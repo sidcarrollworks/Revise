@@ -20,10 +20,13 @@ const { isAuthProj } = require('../../utils/middleware/authOnProj.js');
 // middleware
 router.use(methodOverride('_method'));
 
-
+const conn = mongoose.createConnection(MONGO_CONN);
 // Init stream 
-let Gfs = Grid(mongoose.connection.db, mongoose.mongo);
-Gfs.collection('Uploads');
+let Gfs
+conn.once('open', () => {
+	Gfs = Grid(conn.db, mongoose.mongo);
+	Gfs.collection('Uploads');
+});
 
 // Create Storage Engine
 const storage = new GridFsStorage({
@@ -32,13 +35,12 @@ const storage = new GridFsStorage({
 		const { pid, rid } = req.params;
 		return new Promise((resolve, reject) => {
 			const fileInfo = {
-				filename: uuidv4().substring(0, 8) + "-" + file.originalname,
+				filename: file.originalname,
 				bucketName: 'Uploads',
 				chunkSize: file.chunkSize,
 				metadata: {
-					projectId: pid,
-					revisionId: rid,
-					originalFilename: file.originalname,
+					pId: pid,
+					rId: rid
 				}
 			};
 			resolve(fileInfo);
@@ -50,7 +52,7 @@ const upload = multer({ storage });
 
 
 // PUT files in their place
-// isAuthProj
+
 router.put('/:pid/:rid/upload', upload.single('file'), (req, res) => {
 	console.log(req.file)
 	if (req.file)
@@ -60,19 +62,16 @@ router.put('/:pid/:rid/upload', upload.single('file'), (req, res) => {
 })
 
 // View and Download files
-// isAuthProj
-// router.get('/:pid/:rid/download/', (req, res) => {
-router.get('/download/:fn', (req, res) => {
-	Gfs.files.findOne({ filename: req.params.fn })
+
+router.get('/:pid/:rid/download/', (req, res) => {
+	const { pid, rid } = req.params;
+
+	Gfs.files.findOne({ metadata: { pId: pid, rId: rid } })
 		.then(file => {
-			console.log(file)
 			if (!file || file.length === 0)
 				res.status(401);
-			console.log("beef")
-			let steam = Gfs.createReadStream({ _id: file._id })
-			console.log("after")
-			steam.pipe(res);
-				// Gfs.createReadStream({ _id: file._id }).pipe(res);
+			else
+				Gfs.createReadStream({ _id: file._id }).pipe(res), res.status(200);
 		})
 		.catch(err => {
 			console.log("/:pid/:rid/download : ", err);
