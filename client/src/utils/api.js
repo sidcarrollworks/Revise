@@ -73,7 +73,7 @@ client.createRev = function(pid, revInfo) {
 	return this({ method: 'post', url: `/project/${pid}/create_rev`, data: revInfo })
 		.then(res => {
 			if(res.data.success)
-				return res.data.info;
+				return res.data.success;
 			else
 				throw new Error("failed create revision");
 		})
@@ -91,6 +91,27 @@ client.createCmnt = function(pid, cmntInfo) {
 		})
 }
 
+client.inviteMember = function(pid, info) {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: `/project/${pid}/invite`, data: info })
+		.then(res => {
+			if(res.data.success)
+				return res.data.success;
+			else
+				throw new Error("failed create cmnt");
+		})
+}
+
+client.removeMember = function(pid, info) {
+	this.setDefaultHeader();
+	return this({ method: 'post', url: `/project/${pid}/uninvite`, data: info })
+		.then(res => {
+			if(res.data.success)
+				return res.data.success;
+			else
+				throw new Error("failed create cmnt");
+		})
+}
 
 
 

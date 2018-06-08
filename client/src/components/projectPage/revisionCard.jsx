@@ -5,7 +5,7 @@ import UserAvatar from 'react-user-avatar';
 import RevComment from './commentCard.jsx';
 import AddComment from './addComment.jsx';
 
-class ProjectCard extends Component {
+class revisionCard extends Component {
   render() {
     const { title, body, isFile, _id, comments, owner, createdAt } = this.props.rev
     return (
@@ -15,14 +15,14 @@ class ProjectCard extends Component {
               <h2>{title} - <span className="revDate">{new Date(createdAt).toString()}</span></h2>
           </div>
           <div className="revUser">
-              <UserAvatar size="50" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 3)}.jpeg`} name="Don Cheadle" />
+              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" />
           </div>
           <div className="revBody">
               {isFile ? null : <p>{body}</p>}
           </div>
           <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
           <div className="gridComment">
-              <AddComment refresh={this.props.refresh}/>
+              <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />
           </div>
         </div>
 
@@ -33,4 +33,4 @@ class ProjectCard extends Component {
   }
 }
 
-export default ProjectCard;
+export default revisionCard;

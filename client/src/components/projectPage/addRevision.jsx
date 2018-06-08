@@ -36,9 +36,11 @@ class AddRev extends Component {
     tmp[e.target.name] = e.target.value;
     this.setState(tmp);
   }
+
   handleFormSubmit(e) {
     e.preventDefault();
     const { title, body, text } = this.state;
+    const { refresh, pid } = this.props;
     let revForm = {
       title: title,
       isFile: text ? false : true
@@ -46,10 +48,10 @@ class AddRev extends Component {
     if (text)
       revForm.body = body;
 
-    apiClient.createRev(this.props.pid, revForm)
+    apiClient.createRev(pid, revForm)
       .then(res =>{
         console.log(res)
-        this.props.refresh();
+        refresh();
       })
       .catch(err => {
         console.log("create revision: ", err);

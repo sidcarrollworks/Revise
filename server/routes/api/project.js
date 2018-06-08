@@ -103,11 +103,11 @@ router.post('/:pid/invite', isProjOwner, (req, res) => {
   let invitee = req.body.invitee
   
   if (invitee){
-    User.update({ _id: invitee }, { $push: { invitedProj: pid } })
+    User.findOneAndUpdate({ username: invitee }, { $push: { invitedProj: pid } })
       .then(infoUser => {
 
-        if (infoUser.nModified != 0)
-          Project.update({ _id: pid }, { $push: { invited: invitee } })
+        if (infoUser)
+          Project.update({ _id: pid }, { $push: { invited: infoUser._id } })
             .then(infoProj => {
 
               if (infoProj.nModified != 0)
@@ -140,11 +140,11 @@ router.post('/:pid/uninvite', isProjOwner, (req, res) => {
   const { pid } = req.params;
   let unInvitee = req.body.unInvitee
   
-  User.update({ _id: unInvitee }, { $pull: { memberProj: pid , invitedProj: pid }})
+  User.findOneAndUpdate({ username: unInvitee }, { $pull: { memberProj: pid , invitedProj: pid }})
     .then(infoUser => {
 
-      if (infoUser.nModified != 0)
-        Project.update({ _id: pid }, { $pull: { members: unInvitee, } })
+      if (infoUser)
+        Project.update({ _id: pid }, { $pull: { members: infoUser._id, } })
           .then(infoProj => {
 
             if (infoProj.nModified != 0)

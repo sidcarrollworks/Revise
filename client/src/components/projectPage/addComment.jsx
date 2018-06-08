@@ -9,31 +9,60 @@ class AddRev extends Component {
     super(props);
 
     this.state = {
-      commentForm: {
-        title: "",
-        body: ""
-      }
+      text: "",
+      err: false
     }
+
+
+    this.handleFormChanges = this.handleFormChanges.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
+  handleFormChanges(e) {
+    e.preventDefault();
+		let tmp = {};
+    tmp[e.target.name] = e.target.value;
+    this.setState(tmp);
+	}
+  
+  handleFormSubmit(e) {
+    e.preventDefault();
+    const { text } = this.state;
+    const { rId, refresh, pid } = this.props;
+    let cmntForm = {
+      text: text,
+      revId: rId
+    }
+
+    apiClient.createCmnt(pid, cmntForm)
+      .then(res =>{
+        console.log("lolwut", res)
+        refresh();
+      })
+      .catch(err => {
+        console.log("create comment: ", err);
+        this.setState({err: true});
+      })
+  }
 
   render() {
 
-    var commentBox = {
+    const commentBox = {
       backgroundColor: 'white',
       minHeight: '100px'
     };
 
     return (
-      <div>
+      <>
         <button className="createCommentBtn" onClick={() => this.customDialog.show()}>Comment</button>
         <SkyLight dialogStyles={commentBox} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="Create a new comment">
-          <form className='commentFrom'>
+          <form onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit} className='commentFrom'>
             <textarea name="text" rows="3" cols="30" placeholder="Comment"></textarea>
             <button type="submit">Comment</button>
+            { this.state.err ? <h4> there was an error posting Comment </h4> : null }
           </form>
         </SkyLight>
-      </div>
+      </>
     );
   }
 }

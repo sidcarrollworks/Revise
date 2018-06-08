@@ -17,28 +17,28 @@ class Projectlist extends Component {
         <h2>My Projects</h2>
         { ownedProj.map(el => 
           !el.isArchived ? 
-          <Link key={el._id} to={'project/' + el._id}>
+          <Link key={el._id} to={'/project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
         <h2>Active Projects</h2>
         { memberProj.map(el => 
           !el.isArchived ? 
-          <Link key={el._id} to={'project/' + el._id}>
+          <Link key={el._id} to={'/project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
         <h2>Invited Projects</h2>
         { invitedProj.map(el => 
           !el.isArchived ? 
-          <Link key={el._id} to={'project/' + el._id}>
+          <Link key={el._id} to={'/project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
         <h2>Archived Projects</h2>
         { [...ownedProj, ...memberProj, ...invitedProj].map(el => 
           el.isArchived ? 
-          <Link key={el._id} to={'project/' + el._id}>
+          <Link key={el._id} to={'/project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
