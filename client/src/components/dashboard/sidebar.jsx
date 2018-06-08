@@ -9,10 +9,10 @@ class Sidebar extends Component {
     return (
       <div className="">
         <div className="userInfo">
-          <UserAvatar size="200" src={avatarUrl ? avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name={username} />
-          <h2>{firstName}</h2>
-          <h4>{lastName}</h4>
-          <p>@{username}</p>
+          <div id="userAvatar"><UserAvatar size="200" src={avatarUrl ? avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name={username} /></div>
+          <h4 id="first">{firstName}</h4>
+          <h4 id="last">{lastName}</h4>
+          <h4 id="user">{username}</h4>
         </div>
         <button id="dashLogout" onClick={handleLogout}>Log out</button>
       </div>

@@ -125,3 +125,35 @@ select {
 #formCheckbox {
     width: 5%;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .componentWrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        grid-template-areas:
+            "form"
+            "logo";
+        grid-row-gap: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .loginWrapper {
+        grid-area: form;
+        background: 0;
+        padding: 15px;
+        border: 0;
+        box-shadow: none;
+        margin: 0 auto;
+    }
+    .logo {
+        grid-area: logo;
+    }
+    .loginWrapper a:hover {
+        color: white;
+    }
+    
+    .loginWrapper a {
+        color: white;
+    }
+}
