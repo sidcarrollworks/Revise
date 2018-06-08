@@ -12,7 +12,6 @@ router.get('/info', (req, res) => {
     .populate('invitedProj', 'title _id')
     .exec()
     .then(info => {
-      console.log(info)
       res.status(200).json({
         success: true,
         info: info
