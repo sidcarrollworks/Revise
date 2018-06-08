@@ -5,7 +5,7 @@ module.exports = {
   mode: "none",
 
   // React dev tools
-  devtool: "#eval-source-map",
+  devtool: "cheap-module-source-map",
 
   // the entry file for the bundle
   entry: path.join(__dirname, '/client/src/index.js'),

@@ -9,8 +9,8 @@ import FileCard from './fileCard.jsx';
 
 class revisionCard extends Component {
   render() {
-    const { title, body, isFile, _id, comments, owner, createdAt } = this.props.rev
-    const { isArchived } = this.props
+    const { title, body, isFile, _id, comments, owner, createdAt, filename, filesize } = this.props.rev
+    const { isArchived, pid } = this.props
     return (
       <>
         <div className="revisionCard">
@@ -21,7 +21,7 @@ class revisionCard extends Component {
               <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" />
           </div>
           <div className="revBody">
-              {isFile ? <FileCard /> : <p>{body}</p>}
+              {isFile ? <FileCard rid={_id} pid={pid} filename={filename} filesize={filesize} /> : <p>{body}</p>}
           </div>
           <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
           <div className="gridComment">

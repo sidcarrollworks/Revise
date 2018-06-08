@@ -35,7 +35,7 @@ const storage = new GridFsStorage({
 		const { pid, rid } = req.params;
 		return new Promise((resolve, reject) => {
 			const fileInfo = {
-				filename: file.originalname,
+				filename: uuidv4().slice(0, 8) + "-" + file.originalname,
 				bucketName: 'Uploads',
 				chunkSize: file.chunkSize,
 				metadata: {
@@ -53,7 +53,7 @@ const upload = multer({ storage });
 
 // PUT files in their place
 
-router.put('/:pid/:rid/upload', upload.single('file'), (req, res) => {
+router.put('/:pid/:rid/upload', isAuthProj, upload.single('file'), (req, res) => {
 	console.log(req.file)
 	if (req.file)
 		res.status(200).json({success: true})
@@ -63,16 +63,18 @@ router.put('/:pid/:rid/upload', upload.single('file'), (req, res) => {
 
 // View and Download files
 
-router.get('/:pid/:rid/download/', (req, res) => {
+router.get('/:pid/:rid/download/', isAuthProj, (req, res) => {
 	const { pid, rid } = req.params;
 
 	Gfs.files.findOne({ metadata: { pId: pid, rId: rid } })
 		.then(file => {
 			if (!file || file.length === 0)
 				res.status(401);
-			else
+			else {
+				res.set("filename", file.filename);
 				Gfs.createReadStream({ _id: file._id }).pipe(res), res.status(200);
-		})
+			}
+			})
 		.catch(err => {
 			console.log("/:pid/:rid/download : ", err);
 			res.status(401);

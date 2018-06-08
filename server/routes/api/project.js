@@ -45,22 +45,31 @@ router.post('/create', (req, res) => {
 
 router.post('/:pid/create_rev', isAuthProj, (req, res) => {
   const { pid } = req.params;
+  const id = mongoose.Types.ObjectId();
   let newRevision = {
     title: req.body.title,
     body: req.body.body,
     owner: req.user._id,
-    isFile: req.body.isFile
+    isFile: req.body.isFile,
+    filename: req.body.isFile ? req.body.filename : "",
+    filesize: req.body.isFile ? req.body.filesize : 0,
+    _id: id
   };
   if (req.body.file)
     newRevision.file = req.body.file;
 
-  Project.update({ _id: pid }, { $push: {'revisions': newRevision} })
+  Project.findOneAndUpdate({ _id: pid }, { $push: {'revisions': newRevision} })
     .then(info => {
-      res.status(200).json({
-        success: true
-      })
+      if (info)
+        res.status(200).json({
+          success: true,
+          rid: id
+        });
+      else
+        throw new Error("error creating revision");
     })
     .catch(err => {
+      //cleanup
       console.log("/api/project/:pid/create_rev: ", err);
       res.status(400).json({
         success: false

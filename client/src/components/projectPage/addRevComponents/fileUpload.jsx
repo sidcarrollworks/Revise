@@ -4,31 +4,19 @@ import '../../../styles/fileUpload.css';
 
 class FileUpload extends Component {
 
-  constructor() {
-    super();
-    this.state = { files: [] }
-  }
 
-  onDrop(files) {
-    this.setState({
-      files
-    });
-  }
-
-  removeFile(e) {
-
-  }
+  formatBytes(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
 
   render() {
     return (
       <div className="fileUpload">
-        <Dropzone className="dropzone" onDrop={this.onDrop.bind(this)}>
+        <Dropzone className="dropzone" onDrop={this.props.onDrop}>
           <div>
             Drop File Here
           </div>
         </Dropzone>
         <div className="droppedFiles">
-          { this.state.files.map(f => <p onCLick="" key={f.name}>{f.name} - {f.size} bytes</p>) }
+          { this.props.files.map(f => <p key={f.name}>{f.name} - {this.formatBytes(f.size, "MB")}</p>) }
         </div>
       </div>
     )

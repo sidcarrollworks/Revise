@@ -17,6 +17,8 @@ const revisionSchema = new mongoose.Schema({
 	comments: [commentSchema],
 	body:  { type: String, required: false },
 	isFile: { type: Boolean, required: true },
+	filename: { type: String, required: false },
+	filesize: { type: Number, required: false },
 	owner: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true }
 }, { timestamps: true });
 
