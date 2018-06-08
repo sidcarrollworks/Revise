@@ -8,10 +8,10 @@ class Sidebar extends Component {
     return (
       <div className="">
         <div className="userInfo">
-          <UserAvatar size="200" src="https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODUxNzE2NjIz/don-cheadle-538188-1-402.jpg" name={this.props.user.firstName} />
-          <h2>{this.props.user.firstName}</h2>
-          <h4>{this.props.user.lastName}</h4>
-          <p>@{this.props.user.username}</p>
+          <div id="userAvatar"><UserAvatar size="200" src="https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODUxNzE2NjIz/don-cheadle-538188-1-402.jpg" name={this.props.user.firstName} /></div>
+          <h4 id="first">{this.props.user.firstName}</h4>
+          <h4 id="last">{this.props.user.lastName}</h4>
+          <h4 id="user">{this.props.user.username}</h4>
         </div>
         <button id="dashLogout" onClick={this.props.handleLogout}>Log out</button>
       </div>

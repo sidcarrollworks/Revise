@@ -41,3 +41,32 @@
 #signup:hover {
     background-color: rgba(255, 255, 255, 0.219);
 }
+
+@media only screen and (max-width: 600px) {
+    .navbar {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-areas:
+            "home"
+            "login"
+            "signup";
+        grid-column-gap: 0;
+    }
+
+    .navbar a {
+        margin: 0 auto;
+    }
+
+    #home {
+        grid-area:home;
+    }
+    #login {
+        grid-area:login;
+    }
+    #signup {
+        grid-area:signup;
+    }
+    .navbar a:hover {
+        border-bottom: 0;
+    }
+}

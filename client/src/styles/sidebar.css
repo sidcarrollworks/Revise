@@ -26,3 +26,31 @@
 #dashLogout:hover {
     background: white;
 }
+
+@media only screen and (max-width: 600px) {
+    .userInfo {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "avatar avatar avatar"
+            "first last user"
+            "logout logout logout";
+        grid-column-gap: 10px;
+    }
+    #first {
+        grid-area: first;
+    }
+    #last {
+        grid-area: last;
+    }
+    #user {
+        grid-area: user;
+    }
+    #dashLogout {
+        grid-area: logout;
+    }
+    #userAvatar {
+        grid-area: avatar;
+    }
+}
