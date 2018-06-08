@@ -9,7 +9,7 @@ class RevComment extends Component {
     return (
       <div className="revComments">
         <div className="commentUser"><UserAvatar size="40" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 4)}.jpeg`} name="Don Cheadle" /></div>
-        <h4 className="commentDate">{owner.username} - <span style={{color: "grey", fontSize:"12px"}}>{new Date(createdAt).toString()}</h4>
+        <h4 className="commentDate">{owner.username} - <span style={{color: "grey", fontSize:"12px"}}>{new Date(createdAt).toString()}</span></h4>
         <p className="commentText">{text}</p>
       </div>
     )

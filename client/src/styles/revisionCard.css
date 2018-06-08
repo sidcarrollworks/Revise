@@ -69,44 +69,7 @@
     float: left;
 }
 
-.createCommentBtn {
-    border: 0;
-    color: white;
-    background: rgba(7, 170, 234, 1);
-    padding: 5px;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: background .1s ease-in;
-}
 
-.createCommentBtn:hover {
-    background: rgb(86, 196, 240);
-}
-
-.commentForm {
-    display: grid;
-    grid-template-columns: 5fr 1fr;
-    grid-template-areas: "box btn";
-}
-
-.btnContainer {
-    grid-area: btn;
-}
-
-.btnContainer button {
-    height: 100%;
-    color: white;
-    background: rgba(7, 170, 234, 1);
-    cursor: pointer;
-    transition: background .1s ease-in;
-    border: 1px solid rgba(7, 170, 234, 1);
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-
-.btnContainer button:hover {
-    background: rgb(86, 196, 240);
-}
 
 /* REVISION COMMENT CSS */
 

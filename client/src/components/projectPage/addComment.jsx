@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
-import TextareaAutosize from 'react-autosize-textarea';
+import '../../styles/addComment.css';
 
 import apiClient from '../../utils/api.js';
 
@@ -53,24 +53,12 @@ class AddRev extends Component {
       minHeight: '100px'
     };
 
-    let inputBox = {
-      width: '100%',
-      resize: 'none',
-      borderTopLeftRadius: '3px',
-      borderBottomLeftRadius: '3px',
-      gridArea: 'box',
-      border: '1px solid rgba(7, 170, 234, 1)',
-      padding: '10px',
-      fontSize: '20px'
-    }
-
     return (
       <>
         <button className="createCommentBtn" onClick={() => this.customDialog.show()}>Comment</button>
         <SkyLight dialogStyles={commentBox} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="Create a new comment">
-          <form onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit} className='commentFrom'>
-            {/* <textarea name="text" rows="3" cols="30" placeholder="Comment"></textarea> */}
-            <TextareaAutosize style={inputBox} />
+          <form onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit} className='commentForm'>
+            <textarea name="text" className="inputBox" rows="3" cols="30" placeholder="Comment"></textarea>
             <div className="btnContainer"><button type="submit">Comment</button></div>
             { this.state.err ? <h4> there was an error posting Comment </h4> : null }
           </form>

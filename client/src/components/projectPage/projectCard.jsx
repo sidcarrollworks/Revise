@@ -21,7 +21,7 @@ class ProjectCard extends Component {
           <p>{description}</p>
         </div>
         <div className="buttons">
-          { isArchived ? <h4> this project is archived </h4> : <button id="archiveProjBtn">ARCHIVE</button>}
+          { isArchived ? <h4> this project is archived </h4> : <Archive /> }
           { isArchived ? null : <Members members={members} refresh={refresh} pid={pid} /> }
         </div>
       </div>
