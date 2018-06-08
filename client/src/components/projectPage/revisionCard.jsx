@@ -1,33 +1,34 @@
 import React, { Component } from 'react'
-import SkyLight from 'react-skylight';
 import '../../styles/revisionCard.css';
+import UserAvatar from 'react-user-avatar';
 
 import RevComment from './revComment.jsx';
 import AddComment from './addComment.jsx';
 
 class ProjectCard extends Component {
   render() {
-    const { title, body, _id, comments, owner, createdAt } = this.props.rev
+    const { title, body, isFile, _id, comments, owner, createdAt } = this.props.rev
     return (
-        <div>
-            <div className="revisionCard">
-                <div className="revTitle">
-                    <h1>{title} - <span style={{color: "grey", fontSize:"1em"}}>{new Date(createdAt).toString()}</span></h1>
-                </div>
-                <div className="revId">{`#${_id}`}</div>
-                <div className="revText">
-                    <p>{body}</p>
-                </div>
-                <div className="revFile">
-                    {owner.username}
-                </div>
-                <div className="gridComment">
-                    <AddComment />
-                </div>
-            </div>
-            {comments.length ? comments.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map(el => <RevComment key={el._id} cmnt={el} />) : null}
+      <>
+        <div className="revisionCard">
+          <div className="revTitle">
+              <h2>{title} - <span className="revDate">{new Date(createdAt).toString()}</span></h2>
+          </div>
+          <div className="revUser">
+              <UserAvatar size="50" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 2)}.jpeg`} name="Don Cheadle" />
+          </div>
+          <div className="revBody">
+              {isFile ? null : <p>{body}</p>}
+          </div>
+          <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
+          <div className="gridComment">
+              <AddComment />
+          </div>
         </div>
+
+        {comments.length ? comments.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map(el => <RevComment key={el._id} cmnt={el} />) : null}
+      </>
     )
   }
 }

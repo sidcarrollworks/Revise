@@ -4,44 +4,44 @@
     margin-left: auto;
     margin-right: auto;
     grid-template-columns: 1fr auto ;
-    grid-template-rows: 1fr auto auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
-        "title id"
-        "text text"
-        "file comment";
-    border: 1px solid grey;
-    border-radius: 5px;
+        "title user"
+        "body body"
+        "id comment";
     margin-top: 10px;
     padding: 10px;
     background-color: white;
-    border-color: rgb(63, 199, 0);
+    border: 0 solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
 }
-
-/* .revisionCard::before {
-    content: '';
-    position: absolute;
-    width: 3px;
-    background-color: black;
-    height: 250px;
-    margin-left: -1.5%;
-} */
 
 .revTitle {
     grid-area: title;
     text-align: left;
 }
 
-.revId {
+.revIdHolder {
     grid-area: id;
-}
-
-.revText {
-    grid-area: text;
     text-align: left;
 }
 
-.revFile {
-    grid-area: file;
+.revId {
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.revDate {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgb(172, 172, 172);
+}
+
+.revBody {
+    grid-area: body;
     text-align: left;
 }
 
@@ -67,4 +67,18 @@
 .revComments h4, .revComments p {
     margin: 0;
     float: left;
+}
+
+.createCommentBtn {
+    border: 0;
+    color: white;
+    background: rgba(7, 170, 234, 1);
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+.createCommentBtn:hover {
+    background: rgb(86, 196, 240);
 }

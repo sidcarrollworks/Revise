@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 
-import '../../styles/addRevision.css';
-
 import apiClient from '../../utils/api.js';
 
 class AddRev extends Component {
@@ -20,16 +18,22 @@ class AddRev extends Component {
 
 
   render() {
+
+    var commentBox = {
+      backgroundColor: 'white',
+      minHeight: '100px'
+    };
+
     return (
-      <>
-        <button onClick={() => this.simpleDialog.show()}>Comment</button>
-        <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Create a new comment">
-          <form className='projectFrom'>
+      <div>
+        <button className="createCommentBtn" onClick={() => this.customDialog.show()}>Comment</button>
+        <SkyLight dialogStyles={commentBox} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="Create a new comment">
+          <form className='commentFrom'>
             <textarea name="text" rows="3" cols="30" placeholder="Comment"></textarea>
             <button type="submit">Comment</button>
           </form>
         </SkyLight>
-      </>
+      </div>
     );
   }
 }
