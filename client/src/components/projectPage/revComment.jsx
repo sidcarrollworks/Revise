@@ -8,7 +8,7 @@ class RevComment extends Component {
     console.log("lel", this.props)
     return (
       <div className="revComments">
-        <h4>{owner.username} - <span style={{color: "grey", fontSize:"1em", width: "100%", position: "absolute", left: 0}}>{new Date(createdAt).toString()}</span></h4>
+        <h4>{owner.username} - <span style={{color: "grey", fontSize:"12px"}}>{new Date(createdAt).toString()}</span></h4>
         <p>{text}</p>
       </div>
     )
