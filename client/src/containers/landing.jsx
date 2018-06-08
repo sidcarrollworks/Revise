@@ -13,7 +13,7 @@ class Landing extends Component {
         <div className="header"><Header /></div>
         <div className="welcome">
           <div className="welcomeElements">
-            <p>Revise is a project management system aims to help creators<br/>streamline their communication with clients.</p>
+            <p>Revise is a project management system that aims to help creators<br/>streamline their communication with clients.</p>
             <Link className="getStarted" to="/signup">Get Started</Link>
           </div>
         </div>

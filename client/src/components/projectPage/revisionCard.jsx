@@ -42,6 +42,10 @@ class ProjectCard extends Component {
                     <AddComment />
                 </div>
             </div>
+            <RevComment />
+            <RevComment />
+            <RevComment />
+            <RevComment />
 
             <div className="revisionCard">
                 <div className="revTitle">
@@ -58,6 +62,7 @@ class ProjectCard extends Component {
                     <AddComment />
                 </div>
             </div>
+            <RevComment />
 
             <div className="revisionCard">
                 <div className="revTitle">
@@ -109,6 +114,7 @@ class ProjectCard extends Component {
 
             {/* {comments.length ? comments.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
             .map(el => <RevComment key={el._id} cmnt={el} />) : null} */}
+            <RevComment />
         </div>
     )
   }
