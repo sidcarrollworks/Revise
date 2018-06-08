@@ -22,12 +22,12 @@ class AddRev extends Component {
   render() {
     return (
       <div className="addRev">
-        <button onClick={() => this.simpleDialog.show()}>Add revision</button>
+        <button id="addRevBtn" onClick={() => this.simpleDialog.show()}>Add revision</button>
         <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Make a Revision">
           <form className="revForm">
-            <input name="title" type="text" placeholder="Revision Title"/>
-            <textarea name="text" rows="3" cols="30"></textarea>
-            <button type="submit">Make Revision</button>
+            <input id="createRevTitle"name="title" type="text" placeholder="Revision Title"/>
+            <textarea id="createRevText" name="text"></textarea>
+            <button id="createRevBtn" type="submit">Make Revision</button>
           </form>
         </SkyLight>
       </div>

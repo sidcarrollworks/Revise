@@ -14,35 +14,34 @@ class Projectlist extends Component {
       <h3> Your projects could not be loaded </h3>
       :
       <div className="projects">
-        <h4>My Projects</h4>
+        <h2>My Projects</h2>
         { ownedProj.map(el => 
           !el.isArchived ? 
           <Link key={el._id} to={'project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
-        <h4>Active Projects</h4>
+        <h2>Active Projects</h2>
         { memberProj.map(el => 
           !el.isArchived ? 
           <Link key={el._id} to={'project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
-        <h4>Invited Projects</h4>
+        <h2>Invited Projects</h2>
         { invitedProj.map(el => 
           !el.isArchived ? 
           <Link key={el._id} to={'project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
-        <h4>Archived Projects</h4>
+        <h2>Archived Projects</h2>
         { [...ownedProj, ...memberProj, ...invitedProj].map(el => 
           el.isArchived ? 
           <Link key={el._id} to={'project/' + el._id}>
             <div className="projectLink">{el.title}</div>
           </Link> : null
         ) }
-        <div className="projectLink">Project 4</div>
       </div>
     );
   }

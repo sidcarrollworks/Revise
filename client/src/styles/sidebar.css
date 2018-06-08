@@ -1,14 +1,28 @@
 .sidebar {
     text-align: left;
     display: grid;
-    grid-template-rows: 2fr 1fr 1fr 2fr auto;
-    border: 1px solid 0;
-    border-radius: 5px;
-    background-color: rgb(42, 177, 255);
+    grid-template-rows: auto;
+    background-color: #3f79a8;
     padding: 20px;
     color: white;
+    border: 0 solid #e7e7e7;
+    box-shadow: 10px 0 20px rgba(0, 0, 0, 0.05);
 }
 
-#formButton {
-    background-color: grey;
+.UserAvatar--inner {
+    margin: 0 auto;
+}
+
+#dashLogout {
+    background-color: rgb(243, 243, 243);
+    border: 0;
+    border-radius: 3px;
+    padding: 10px;
+    color: #3f79a8;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+#dashLogout:hover {
+    background: white;
 }

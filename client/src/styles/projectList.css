@@ -18,46 +18,28 @@
         "projects projects";
     background-color: white;
     padding: 15px;
-    border-radius: 5px;
-    /* box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24); */
-    border: 2px solid rgb(42, 177, 255);
-}
-
-.newProject button {
-    grid-area: button;
-    background-color: rgb(42, 177, 255);
-    color: white;
-    padding: 5px;
-    font-size: 24px;
-    border: 0;
-    border-radius: 5px;
-    float: right;
-    height: 100%;
-    padding: 0 20px;
-}
-
-.newProject button:hover {
-    background-color: rgba(42, 177, 255, 0.74);
-    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .projects {
     grid-area: projects;
 }
 
+.projects h2 {
+    font-size: 25px;
+}
+
 .projectLink {
-    border: 1px solid rgb(42, 177, 255);
-    color: rgb(42, 177, 255);
-    border-radius: 5px;
-    padding: 5px;
-    margin-top: 5px;
+    border-top: 1px solid rgb(209, 209, 209);
+    padding: 10px 2px;
+    color: black;
     font-size: 20px;
+    cursor: pointer;
+    transition: background-color .1s ease-in;
 }
 
 .projectLink:hover {
-    cursor: pointer;
-    background-color: rgb(42, 177, 255);
-    color: white;
+    background-color: rgb(245, 245, 245);
 }
 
 /* CREATE PROJECT FORM */

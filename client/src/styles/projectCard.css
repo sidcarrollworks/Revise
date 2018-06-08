@@ -8,13 +8,9 @@
     grid-template-areas:
         "title settings"
         "desc desc";
-    border: 1px solid rgb(42, 177, 255);
-    border-radius: 5px;
     background-color: white;
-}
-
-.test {
-    background-color: blueviolet;
+    border: 0 solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
 }
 
 .title {
@@ -33,4 +29,70 @@
 
 .buttons {
     grid-area: settings;
+}
+
+#archiveProjBtn {
+    border: 0;
+    background: white;
+    color: #3f79a8;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color .1s ease-in;
+}
+
+#archiveProjBtn:hover {
+    color: #5593c5;
+}
+
+#projMemberBtn {
+    border: 0;
+    background: white;
+    color: #d85151;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color .1s ease-in;
+}
+
+#projMemberBtn:hover {
+    color: #eb6464;
+}
+
+.memberSettings {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-row-gap: 40px;
+    grid-template-areas: "search" "list";
+}
+
+.searchMembers {
+    grid-area: search;
+    border: 3px solid rgb(99, 215, 105);
+    border-radius: 5px;
+    width: 250px;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.searchMembers input {
+    border: 0;
+    height: 28px;
+    outline: none;
+    float: left;
+}
+
+.searchMembers button {
+    background: rgb(99, 215, 105);
+    color: white;
+    border: 0;
+    height: 30px;
+    float: right;
+    border-right: 2px solid rgb(99, 215, 105);
+}
+
+.memberList {
+    grid-area: list;
 }

@@ -1,11 +1,11 @@
 .dashNav {
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    grid-template-areas: "1 2 3 4 5 6 7 8 9 10";
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas: "1 2 3 4 5 6 7 8";
     height: 50px;
-    background-color: white;
+    background-color: #2f383f;
     color: rgb(42, 177, 255);
-    border-bottom: 2px solid rgb(42, 177, 255);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .dashBtn {
@@ -16,12 +16,13 @@
 .dashNav a {
     text-align: center;
     text-decoration: none;
-    color: rgb(42, 177, 255);
+    color: white;
     font-size: 25px;
     vertical-align: middle;
     padding: 10px;
+    font-weight: bold;
 }
 
 .dashNav a:visited {
-    color: rgb(42,177,255);
+    color: white;
 }
