@@ -5,6 +5,7 @@ import UserAvatar from 'react-user-avatar';
 
 import RevComment from './revComment.jsx';
 import AddComment from './addComment.jsx';
+import FileCard from './fileCard.jsx';
 
 class ProjectCard extends Component {
   render() {
@@ -35,76 +36,8 @@ class ProjectCard extends Component {
                     <UserAvatar size="50" src="https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODUxNzE2NjIz/don-cheadle-538188-1-402.jpg" name="Don Cheadle" />
                 </div>
                 <div className="revBody">
-                    <p>This is the revision woooohooooooooo</p>
-                </div>
-                <div className="revIdHolder"><span className="revId">#3o45uo34uo2i32o4u2oi829</span></div>
-                <div className="gridComment">
-                    <AddComment />
-                </div>
-            </div>
-            <RevComment />
-            <RevComment />
-            <RevComment />
-            <RevComment />
-
-            <div className="revisionCard">
-                <div className="revTitle">
-                    <h2>Revision #1 - <span className="revDate">2/3/2018 4:10pm PST</span></h2>
-                </div>
-                <div className="revUser">
-                    <UserAvatar size="50" src="" name="Don Cheadle" />
-                </div>
-                <div className="revBody">
-                    <p>This is the revision woooohooooooooo</p>
-                </div>
-                <div className="revIdHolder"><span className="revId">#3o45uo34uo2i32o4u2oi829</span></div>
-                <div className="gridComment">
-                    <AddComment />
-                </div>
-            </div>
-            <RevComment />
-
-            <div className="revisionCard">
-                <div className="revTitle">
-                    <h2>Revision #1 - <span className="revDate">2/3/2018 4:10pm PST</span></h2>
-                </div>
-                <div className="revUser">
-                    <UserAvatar size="50" src="" name="Big BOi" />
-                </div>
-                <div className="revBody">
-                    <p>This is the revision woooohooooooooo</p>
-                </div>
-                <div className="revIdHolder"><span className="revId">#3o45uo34uo2i32o4u2oi829</span></div>
-                <div className="gridComment">
-                    <AddComment />
-                </div>
-            </div>
-
-            <div className="revisionCard">
-                <div className="revTitle">
-                    <h2>Revision #1 - <span className="revDate">2/3/2018 4:10pm PST</span></h2>
-                </div>
-                <div className="revUser">
-                    <UserAvatar size="50" src="" name="Big BOi" />
-                </div>
-                <div className="revBody">
-                    <p>This is the revision woooohooooooooo</p>
-                </div>
-                <div className="revIdHolder"><span className="revId">#3o45uo34uo2i32o4u2oi829</span></div>
-                <div className="gridComment">
-                    <AddComment />
-                </div>
-            </div>
-
-            <div className="revisionCard">
-                <div className="revTitle">
-                    <h2>Revision #1 - <span className="revDate">2/3/2018 4:10pm PST</span></h2>
-                </div>
-                <div className="revUser">
-                    <UserAvatar size="50" src="" name="Big BOi" />
-                </div>
-                <div className="revBody">
-                    <p>This is the revision woooohooooooooo</p>
+                    {/* <p>This is the revision woooohooooooooo</p> */}
+                    <FileCard />
                 </div>
                 <div className="revIdHolder"><span className="revId">#3o45uo34uo2i32o4u2oi829</span></div>
                 <div className="gridComment">

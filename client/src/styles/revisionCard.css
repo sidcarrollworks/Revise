@@ -136,3 +136,22 @@
     text-align: left;
     font-size: 14px;
 }
+
+.fileCard {
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+
+.fileCard img {
+    height: 50px;
+    width: 50px;
+    grid-area: body;
+    margin: 0 auto;
+}
+
+.fileCard button {
+    border:0;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
