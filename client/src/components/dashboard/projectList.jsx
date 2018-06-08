@@ -29,20 +29,6 @@ class Projectlist extends Component {
           </Link> : null
         ) }
         <h2>Invited Projects</h2>
-
-
-
-
-        {/* TEST */}
-        {/* <div className="invitedLink">
-          <span>TEst project invite</span>
-          <div className="inviteBtns">
-            <button id="accept">Accept</button>
-            <button id="deny">Deny</button>
-          </div>
-        </div> */}
-    
-
         { invitedProj.map(el => 
           !el.isArchived ? 
           <div key={el.id} className="invitedLink">
