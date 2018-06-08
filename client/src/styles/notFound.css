@@ -1,0 +1,21 @@
+.notFound {
+    background : -moz-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
+    background : -webkit-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
+    background : -webkit-gradient(radial,50% 50% ,0 , 50% 50%, 778.85 ,color-stop(0,rgba(106, 190, 230, 1) ),color-stop(0.2035,rgba(83, 185, 231, 1) ),color-stop(0.74,rgba(28, 174, 233, 1) ),color-stop(1,rgba(7, 170, 234, 1) ));
+    background : -o-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
+    background : -ms-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Stlye=2);";
+    background : radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.Alpha(Stlye=2);
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+}
+
+#numbers {
+    color: white;
+    margin: auto;
+    font-size: 400px;
+}
