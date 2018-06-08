@@ -3,6 +3,9 @@ import SkyLight from 'react-skylight';
 
 import '../../styles/addRevision.css';
 
+import Text from './addRevComponents/text.jsx';
+import FileUpload from './addRevComponents/fileUpload.jsx';
+
 import apiClient from '../../utils/api.js';
 
 class AddRev extends Component {
@@ -14,9 +17,18 @@ class AddRev extends Component {
       revisionForm: {
         title: "",
         body: ""
-      }
+      },
+      text: true
     }
+
+    this.handleClick = this.handleClick.bind(this);
   }
+
+
+  handleClick(e) {
+    e.preventDefault();
+		this.setState({text: !this.state.text});
+	}
 
 
   render() {
@@ -26,8 +38,9 @@ class AddRev extends Component {
         <SkyLight hideOnOverlayClicked ref={ref => this.simpleDialog = ref} title="Make a Revision">
           <form className="revForm">
             <input id="createRevTitle"name="title" type="text" placeholder="Revision Title"/>
-            <textarea id="createRevText" name="text"></textarea>
-            <button id="createRevBtn" type="submit">Make Revision</button>
+            <div className="uploadFileBtn"><button onClick={this.handleClick}>{ this.state.text ? "TEXT" : "FILE"}</button></div>
+            {this.state.text ? <Text /> : <FileUpload />}
+            <div className="createRevBtnArea"><button id="createRevBtn" type="submit">Make Revision</button></div>
           </form>
         </SkyLight>
       </div>

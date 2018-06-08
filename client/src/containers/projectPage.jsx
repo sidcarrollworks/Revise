@@ -91,6 +91,7 @@ class ProjectPage extends Component {
               {isArchived ? <h4> this project is archived </h4> : <AddRevision />}
               
               {revisions.map(el => <RevisionCard key={el._id} rev={el} />)}
+              <RevisionCard />
             </div>
         </div>
       );

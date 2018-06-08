@@ -72,12 +72,13 @@
     grid-area: search;
     border: 3px solid rgb(99, 215, 105);
     border-radius: 5px;
-    width: 250px;
+    width: 60%;
     height: 30px;
     margin: 0 auto;
 }
 
 .searchMembers input {
+    width: 75%;
     border: 0;
     height: 28px;
     outline: none;
@@ -86,6 +87,7 @@
 
 .searchMembers button {
     background: rgb(99, 215, 105);
+    width: 20%;
     color: white;
     border: 0;
     height: 30px;
@@ -93,6 +95,30 @@
     border-right: 2px solid rgb(99, 215, 105);
 }
 
-.memberList {
+#memberList {
     grid-area: list;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-rows: auto;
+}
+
+.member {
+    padding: 10px;
+    display: grid;
+    grid-template-rows: auto;
+}
+
+#removeBtn {
+    background: rgb(240, 74, 74);
+    margin: 0 auto;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background .1s ease-in;
+    cursor: pointer;
+}
+
+#removeBtn:hover {
+    background: rgb(233, 96, 96);
 }

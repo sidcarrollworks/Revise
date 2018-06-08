@@ -2,11 +2,35 @@
     display: grid;
     height: 300px;
     grid-template-rows: auto 1fr auto;
+    grid-template-columns: 4fr 1fr;
     grid-row-gap: 10px;
     grid-template-areas:
-        "title"
-        "description"
-        "button";
+        "title revType"
+        "text text"
+        "button button";
+}
+
+.uploadFileBtn {
+    grid-area: revType;
+}
+
+.uploadFileBtn button {
+    padding: 10px;
+    background: rgb(67, 145, 218);
+    border: 0;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+.uploadFileBtn button:hover {
+    background: rgb(104, 165, 223);
+}
+
+.fileUpload {
+    grid-area: text;
 }
 
 #addRevBtn {
@@ -18,6 +42,11 @@
     color: rgb(99, 215, 105);
     transition: background .1s ease-in;
     font-weight: bold;
+    margin: 0 auto;
+}
+
+.createRevBtnArea {
+    grid-area: button;
 }
 
 #addRevBtn:hover {
@@ -25,11 +54,13 @@
 }
 
 #createRevText {
+    grid-area: text;
     resize: none;
 }
 
 #createRevTitle {
     height: 30px;
+    grid-area: title;
 }
 
 #createRevTitle, #createRevText {
