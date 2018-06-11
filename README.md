@@ -17,7 +17,7 @@ This project is a web application designed to streamline communication between a
 
 ## Setup
 
-To run this project, git clone and install dependencies first by running **`npm i`**. This will install all dependicies from package.json. Then, to see the project locally, please install mongodb and mongod locally, and once you install both of these, run mongod in one terminal. Then run **`npm run dev`** in another terminal, which run the project on port 3000. You can view the project in your browser by typing in 'http://localhost:3000'. 
+To run this project, git clone and install mongodb and mongod following the installation steps for your specific operating system if you already do not have it. Then, install dependencies by running **`npm i`**. This will install all dependicies from package.json file. Then, to see the project locally, run mongod in one terminal and run **`npm run dev`** in another terminal, which will run the project on port 3000. You can view the project in your browser by typing in 'localhost:3000'. 
 
 ## Authors
 
