@@ -81,4 +81,8 @@
     .welcome .welcomeElements {
         padding-top: 10px;
     }
+    .welcomeElements p {
+        font-size: 25px;
+        padding: 15px;
+    }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import UserAvatar from 'react-user-avatar';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import '../../styles/revisionCard.css';
 
@@ -18,12 +19,34 @@ class revisionCard extends Component {
               <h2>{title} - <span className="revDate">{new Date(createdAt).toString()}</span></h2>
           </div>
           <div className="revUser">
-              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 7)}.jpeg`} name="Don Cheadle" />
+              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
           </div>
           <div className="revBody">
-              {isFile ? <FileCard rid={_id} pid={pid} filename={filename} filesize={filesize} /> : <p>{body}</p>}
+
+            {isFile ?
+            <>
+              <FileCard rid={_id} pid={pid} filename={filename} filesize={filesize} />
+              {/* <FileCard rid={_id} pid={pid} filename={filename} filesize={filesize} /> */}
+            </>
+            : 
+            <p>
+              {body.split(/(\s+)/).map( (el, idx) => {
+                if (el.match(/^#[a-f\d]{24}$/g))
+                  return <a key={idx} href={`${el}`}><span className="highlightedId">{el}</span></a>
+                else
+                  return el
+              })}
+            </p>
+            }
+
           </div>
-          <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
+            <div className="revIdHolder">
+
+              <CopyToClipboard text={`#${_id}`} >
+                <span className="revId">{`#${_id}`}</span>
+              </CopyToClipboard>
+
+            </div>
           <div className="gridComment">
               {isArchived ? null : <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />}
           </div>

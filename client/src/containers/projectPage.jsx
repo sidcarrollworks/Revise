@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import ScrollableAnchor from 'react-scrollable-anchor';
 
 import '../styles/projectPage.css';
 
@@ -95,7 +96,11 @@ class ProjectPage extends Component {
               />
               {isArchived ? <h4> this project is archived </h4> : <AddRevision refresh={this.fetchData} pid={id} />}
               
-              {revisions.map(el => <RevisionCard key={el._id} isArchived={isArchived} rev={el} refresh={this.fetchData} pid={id} />)}
+              {revisions.map(el => 
+              <ScrollableAnchor key={el._id} id={el._id}>
+                <RevisionCard key={el._id} isArchived={isArchived} rev={el} refresh={this.fetchData} pid={id} />
+              </ScrollableAnchor>
+              )}
             </div>
         </div>
       );
