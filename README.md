@@ -21,6 +21,6 @@ To run this project, git clone and install mongodb and mongod following the inst
 
 ## Authors
 
+* Nicholas Boutboul [@raid55](https://github.com/raid55)  
 * Raman Hundal [@hundalrs](http://github.com/hundalrs)
 * Sid Carroll [@squidcarroll](http://github.com/squidcarroll/Revise)
-* Nicholas Boutboul [@raid55](https://github.com/raid55)  
