@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import UserAvatar from 'react-user-avatar';
 
 import '../../styles/projectList.css';
 
@@ -57,7 +58,14 @@ class Projectlist extends Component {
         { ownedProj.map(el =>
           !el.isArchived ? 
           <Link key={el._id} to={'/project/' + el._id}>
-            <div className="projectLink">{el.title}</div>
+            <div className="projectLink">
+              {el.title}
+              <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
+              <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
+
+              <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
+
+            </div>
           </Link> : null
         ) }
         <h2>Active Projects</h2>

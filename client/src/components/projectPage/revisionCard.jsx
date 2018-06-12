@@ -19,7 +19,7 @@ class revisionCard extends Component {
               <h2>{title} - <span className="revDate">{new Date(createdAt).toString()}</span></h2>
           </div>
           <div className="revUser">
-              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : `/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
+              <UserAvatar size="60" src={owner.avatarUrl ? owner.avatarUrl : owner.defaultAvatar} name="Don Cheadle" />
           </div>
           <div className="revBody">
 

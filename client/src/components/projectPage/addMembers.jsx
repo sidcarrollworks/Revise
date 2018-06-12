@@ -73,7 +73,7 @@ class Members extends Component {
             <div id="memberList">
               { members.map(el => 
                 <span key={el._id} className="member">
-                  <UserAvatar size="40" src={el.avatarUrl ? el.avatarUrl : `/don/${Math.floor(Math.random() * 12)}.jpeg`} name={el.username} />
+                  <UserAvatar size="40" src={el.avatarUrl ? el.avatarUrl : el.defaultAvatar} name={el.username} />
                   {el.username}
                   <button onClick={this.handleMembRemove} name={el.username} id="removeBtn">remove</button>
                 </span>

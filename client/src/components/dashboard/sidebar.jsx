@@ -5,11 +5,11 @@ import '../../styles/sidebar.css';
 
 class Sidebar extends Component {
   render() {
-    const { avatarUrl, firstName, lastName, username } = this.props.user;
+    const { avatarUrl, firstName, lastName, username, defaultAvatar } = this.props.user;
     return (
       <div className="">
         <div className="userInfo">
-          <div id="userAvatar"><UserAvatar size="200" src="/don/7.jpeg" name={username} /></div>
+          <div id="userAvatar"><UserAvatar size="200" src={avatarUrl ? avatarUrl : defaultAvatar} name={username} /></div>
           <h4 id="first">{firstName}</h4>
           <h4 id="last">{lastName}</h4>
           <h4 id="user">{username}</h4>

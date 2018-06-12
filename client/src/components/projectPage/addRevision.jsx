@@ -53,7 +53,6 @@ class AddRev extends Component {
     else
       [revForm.filename, revForm.filesize] = [files[0].name, files[0].size];
     
-    console.log(revForm)
     apiClient.createRev(pid, revForm)
       .then(res =>{
         if (!text){
@@ -86,7 +85,7 @@ class AddRev extends Component {
     this.setState({
       files
     });
-    console.log(files)
+    // console.log(files)
   }
 
   formatBytes(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}

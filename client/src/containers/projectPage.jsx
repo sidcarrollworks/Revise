@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import ScrollableAnchor from 'react-scrollable-anchor';
+import ScrollableAnchor from 'react-scrollable-anchor'
+import ScrollToTop from 'react-scroll-up';
+import UserAvatar from 'react-user-avatar';
 
 import '../styles/projectPage.css';
 
@@ -82,6 +84,9 @@ class ProjectPage extends Component {
     else
       return (
         <div className="projectContainer">
+          <ScrollToTop showUnder={160}>
+            <UserAvatar size="40" src="/don/3.jpeg" name="dc" />
+          </ScrollToTop>
           <div className="projectNav">
             <DashNav />
           </div>
