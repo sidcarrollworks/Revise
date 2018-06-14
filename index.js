@@ -33,7 +33,7 @@ const app = require('./server/app.js').app;
 
 // Listening on port...
 if (NODE_ENV === "production") {
-  app.set('port', 443);
+  app.set('port', 4430);
 
   httpServer.listen(8080);
   httpServer.on('listening', () => {
