@@ -35,7 +35,7 @@ const app = require('./server/app.js').app;
 if (NODE_ENV === "production") {
   app.set('port', 443);
 
-  httpServer.listen(80);
+  httpServer.listen(8080);
   httpServer.on('listening', () => {
     console.log(chalk.grey.bold('\n...'));
     console.log(chalk.blue(`Starting redirect service..`));
@@ -45,7 +45,7 @@ if (NODE_ENV === "production") {
     console.log(chalk.red.bold(err));
   });
 
-  httpsServer.listen(443);
+  httpsServer.listen(4430);
   httpsServer.on('listening', () => {
     console.log(chalk.grey.bold('\n...'));
     console.log(chalk.blue(`Starting Revise.work...`));
