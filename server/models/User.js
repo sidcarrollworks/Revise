@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema ({
 	artistPage: { type: Boolean, default: false },
 	password: { type: String, required: true/*, minlength: 60, maxlength: 60 */},
 	avatarUrl: { type: String },
-	defaultAvatar : { type: String, default: `/don/${Math.floor(Math.random() * 12)}.jpeg` },
+	defaultAvatar : { type: String },
 	gender: { type: String, enum: GENDERS, required: true },
 	connections: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Users' }],
 	ownedProj: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Projects' }],

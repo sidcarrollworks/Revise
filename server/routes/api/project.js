@@ -45,6 +45,7 @@ router.post('/create', (req, res) => {
 
 router.post('/:pid/create_rev', isAuthProj, (req, res) => {
   const { pid } = req.params;
+  const regPopulateOwner = 'username _id avatarUrl defaultAvatar';
   const id = mongoose.Types.ObjectId();
   let newRevision = {
     title: req.body.title,
@@ -67,6 +68,16 @@ router.post('/:pid/create_rev', isAuthProj, (req, res) => {
         });
       else
         throw new Error("error creating revision");
+      Project.findById(pid, 'revisions')
+        .populate('revisions.owner', regPopulateOwner)
+        .populate('revisions.comments.owner', regPopulateOwner)
+        .then(revs => {
+          console.log(revs)
+          req.io.to(`proj:${pid}`).emit('pUpdate', revs.revisions);
+        })
+        .catch(err => {
+          console.log("/api/project/:pid/create 2end: ", err);
+        });
     })
     .catch(err => {
       //cleanup
@@ -80,6 +91,7 @@ router.post('/:pid/create_rev', isAuthProj, (req, res) => {
 
 router.post('/:pid/create_cmnt', isAuthProj, (req, res) => {
   const { pid } = req.params;
+  const regPopulateOwner = 'username _id avatarUrl defaultAvatar';
   let newComment = {
     text: req.body.text,
     owner: req.user._id
@@ -94,6 +106,15 @@ router.post('/:pid/create_cmnt', isAuthProj, (req, res) => {
       else
         res.status(200).json({
           success: true
+        });
+      Project.findById(pid, 'revisions')
+        .populate('revisions.owner', regPopulateOwner)
+        .populate('revisions.comments.owner', regPopulateOwner)
+        .then(revs => {
+          req.io.to(`proj:${pid}`).emit('pUpdate', revs.revisions);
+        })
+        .catch(err => {
+          console.log("/api/project/:pid/create 2end: ", err);
         });
     })
     .catch(err => {
@@ -279,13 +300,14 @@ router.get('/:pid/archive', isProjOwner, (req, res) => {
 
 router.get('/:pid', isAuthProj, (req, res) => {
   const { pid } = req.params;
+  const regPopulateOwner = 'avatarUrl defaultAvatar username _id';
 
   Project.findById(pid, 'title description revisions owner members invited isArchived _id createdAt')
-    .populate('owner', 'avatarUrl username _id')
-    .populate('members', 'avatarUrl username _id')
-    .populate('invited', 'avatarUrl username _id')
-    .populate('revisions.owner', 'avatarUrl username _id')
-    .populate('revisions.comments.owner', 'avatarUrl username _id')
+    .populate('owner', regPopulateOwner)
+    .populate('members', regPopulateOwner)
+    .populate('invited', regPopulateOwner)
+    .populate('revisions.owner', regPopulateOwner)
+    .populate('revisions.comments.owner', regPopulateOwner)
     .exec()
     .then(info => {
       setTimeout(() => {
@@ -303,5 +325,6 @@ router.get('/:pid', isAuthProj, (req, res) => {
     })
 })
 //-------------------------------------------------------//
+
 
 module.exports = router;

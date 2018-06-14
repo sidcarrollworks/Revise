@@ -12,22 +12,25 @@ import NotFound from './components/notFound.jsx';
 import ProjectPage from './containers/projectPage.jsx';
 
 import { AuthProvider } from './contexts/authContext.jsx';
+import { SocketProvider } from './contexts/socketContext.jsx';
 
 
 class App extends Component {
   render() {
     return (
       <AuthProvider>
-        <div className='App'>
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/project/:id" component={ProjectPage} />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
+        <SocketProvider>
+          <div className='App'>
+            <Switch>
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/signup" component={Signup} />
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/project/:id" component={ProjectPage} />
+              <Route component={NotFound} />
+            </Switch>
+          </div>
+        </SocketProvider>
       </AuthProvider>
     );
   }

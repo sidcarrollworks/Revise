@@ -34,16 +34,20 @@ class AddRev extends Component {
       text: text,
       revId: rId
     }
-
-    apiClient.createCmnt(pid, cmntForm)
-      .then(res =>{
-        console.log("lolwut", res)
-        refresh();
-      })
-      .catch(err => {
-        console.log("create comment: ", err);
-        this.setState({err: true});
-      })
+    if (text.length == 0)
+      this.setState({err: true})
+    else
+      apiClient.createCmnt(pid, cmntForm)
+        .then(res =>{
+          console.log("lolwut", res)
+          // refresh();
+          this.customDialog.hide()
+          this.setState({err: false, text: ""});
+        })
+        .catch(err => {
+          console.log("create comment: ", err);
+          this.setState({err: true});
+        })
   }
 
   render() {
@@ -56,9 +60,9 @@ class AddRev extends Component {
     return (
       <>
         <button className="createCommentBtn" onClick={() => this.customDialog.show()}>Comment</button>
-        <SkyLight dialogStyles={commentBox} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="Create a new comment">
+        <SkyLight showOverlay={this.state.test} dialogStyles={commentBox} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="Create a new comment">
           <form onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit} className='commentForm'>
-            <textarea name="text" className="inputBox" rows="3" cols="30" placeholder="Comment"></textarea>
+            <textarea value={this.state.text} name="text" className="inputBox" rows="3" cols="30" placeholder="Comment"></textarea>
             <div className="btnContainer"><button type="submit">Comment</button></div>
             { this.state.err ? <h4> there was an error posting Comment </h4> : null }
           </form>

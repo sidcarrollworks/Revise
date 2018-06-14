@@ -12,6 +12,8 @@ import AddRevision from '../components/projectPage/addRevision.jsx';
 import DashNav from '../components/navbar/dashNav.jsx';
 import IsLoading from '../components/isLoading.jsx';
 
+import { Consumer as SocketConsumer } from '../contexts/socketContext.jsx';
+
 import apiClient from '../utils/api.js';
 
 
@@ -41,7 +43,6 @@ class ProjectPage extends Component {
   fetchData() {
     apiClient.getProjInfo(this.props.match.params.id)
       .then(info => {
-        info.revisions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         this.setState({isProjLoading: false, isAuthed: true, ...info});
       })
       .catch(err => {
@@ -53,19 +54,32 @@ class ProjectPage extends Component {
 
   componentDidMount() {
     this.fetchData();
+    this.props.joinProjRoom(this.props.match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.leaveProjRoom(this.props.match.params.id)
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { projInfo, isProjLoading } = this.state;
-  
-    if (projInfo === null && isProjLoading === false)
+    const { _id, isProjLoading } = this.state;
+    
+    if (_id === null && isProjLoading === false)
       this.fetchData();
+    // if (!this.props.revs)
+    //   this.props.joinProjRoom(this.props.match.params.id);
   }
 
   render() {
     // console.log(this.props.match.params.id)
+
     const { title, description, members, isArchived, revisions, isProjLoading, err } = this.state;
     const { id } = this.props.match.params;
+    
+    let revSwitch = revisions;
+    if (this.props.revs)
+      revSwitch = this.props.revs;
+    
     if (isProjLoading)
       return <IsLoading />
     else if (!this.state.isAuthed && !this.state.isProjLoading)
@@ -101,22 +115,27 @@ class ProjectPage extends Component {
               />
               {isArchived ? <h4> this project is archived </h4> : <AddRevision refresh={this.fetchData} pid={id} />}
               
-              {revisions.map(el => 
+              {revSwitch.length !== 0 ? revSwitch.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(el => 
               <ScrollableAnchor key={el._id} id={el._id}>
                 <RevisionCard key={el._id} isArchived={isArchived} rev={el} refresh={this.fetchData} pid={id} />
               </ScrollableAnchor>
-              )}
+              ) : <h4>Add your first Revision!!! u big dumbo</h4>}
             </div>
         </div>
       );
   }
 }
 
-// plan of attack
-// make init call to api to preload page, meanwhile loading
-// then map over revisions and pass relevent props
-// then map over revision comments inside of revision cards
-// then do a barrel roll
 
+export default props => (
+  <SocketConsumer>
+    {context => (<ProjectPage
+      {...props}
+      socket={context.socket}
+      revs={context.revs}
+      joinProjRoom={context.joinProjRoom}
+      leaveProjRoom={context.leaveProjRoom}
+    />)}
+  </SocketConsumer>
+);
 
-export default ProjectPage;

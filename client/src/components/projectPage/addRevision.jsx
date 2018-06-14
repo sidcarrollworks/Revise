@@ -53,26 +53,30 @@ class AddRev extends Component {
     else
       [revForm.filename, revForm.filesize] = [files[0].name, files[0].size];
     
-    apiClient.createRev(pid, revForm)
-      .then(res =>{
-        if (!text){
-          
-          apiClient.uploadFile(pid, res, files[0])
-            .then(res => {
-              console.log(res);
-              refresh();
-            })
+    if (text && revForm.body.length == 0)
+      this.setState({err: true});
+    else
+      apiClient.createRev(pid, revForm)
+        .then(res =>{
+          if (!text){
+            
+            apiClient.uploadFile(pid, res, files[0])
+              .then(res => {
+                console.log(res);
+                this.customDialog.hide()
+                this.setState({err: false});
+              })
 
-        } else {
-          console.log(res)
-          refresh();
-        }
-        refresh();
-      })
-      .catch(err => {
-        console.log("create revision: ", err);
-        this.setState({err: true});
-      })
+          } else {
+            console.log(res)
+            this.customDialog.hide()
+            this.setState({err: false});
+          }
+        })
+        .catch(err => {
+          console.log("create revision: ", err);
+          this.setState({err: true});
+        })
   }
 
 
@@ -94,8 +98,8 @@ class AddRev extends Component {
   render() {
     return (
       <div className="addRev">
-        <button id="addRevBtn" onClick={() => this.simpleDialog.show()}>Add revision</button>
-        <SkyLight ref={ref => this.simpleDialog = ref} title="Make a Revision">
+        <button id="addRevBtn" onClick={() => this.customDialog.show()}>Add revision</button>
+        <SkyLight ref={ref => this.customDialog = ref} title="Make a Revision">
           <form onSubmit={this.handleFormSubmit} onChange={this.handleFormChange} className="revForm">
             <input id="createRevTitle" name="title" type="text" placeholder="Revision Title"/>
             <div className="uploadFileBtn"><button onClick={this.handleClick}>{ this.state.text ? "TEXT" : "FILE"}</button></div>

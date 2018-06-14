@@ -17,6 +17,7 @@ module.exports = new PassportLocalStrategy({
     firstName: firstName,
     lastName: lastName,
     username: username,
+    defaultAvatar: `/don/${Math.floor(Math.random() * 12)}.jpeg`,
     email: email,
     password: password,
     dateOfBirth: dateOfBirth,
