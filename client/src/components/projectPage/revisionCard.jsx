@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import UserAvatar from 'react-user-avatar';
 
-import '../../styles/revisionCard.css';
 
 import RevComment from './commentCard.jsx';
 import AddComment from './addComment.jsx';

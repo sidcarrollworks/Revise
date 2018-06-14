@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
-import '../../../styles/fileUpload.css';
 
 class FileUpload extends Component {
 

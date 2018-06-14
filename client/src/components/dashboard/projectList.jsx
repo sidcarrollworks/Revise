@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import '../../styles/projectList.css';
-
 import apiClient from '../../utils/api.js';
 
 class Projectlist extends Component {

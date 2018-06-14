@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
-import '../../styles/addComment.css';
 
 import apiClient from '../../utils/api.js';
 

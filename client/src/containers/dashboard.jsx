@@ -127,7 +127,8 @@ class Dashboard extends Component {
 
         <div className="projectPanel">
           <div className="projectList">
-            <h1>Projects</h1>
+          <h1>Projects</h1>
+
 
             {/* creating a new project skybox and logic */}
             <div className="newProject">

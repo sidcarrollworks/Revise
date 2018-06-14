@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import validator from 'validator';
 
-import '../../styles/addRevision.css';
-
 import Text from './addRevComponents/text.jsx';
 import FileUpload from './addRevComponents/fileUpload.jsx';
 

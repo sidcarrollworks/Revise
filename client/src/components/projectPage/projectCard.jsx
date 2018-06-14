@@ -4,7 +4,6 @@ import Members from './addMembers.jsx';
 
 import Archive from './archive.jsx'; 
 
-import '../../styles/projectCard.css';
 const membersSLCss = {
   backgroundColor: 'green'
 };

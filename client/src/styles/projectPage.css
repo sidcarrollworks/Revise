@@ -34,3 +34,468 @@
         width: 80vw;
     }
 }
+
+
+/* PROJECT CARD */
+
+
+.projectCard {
+    display: grid;
+    width: 100%;
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    grid-template-rows: auto;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+        "title settings"
+        "desc desc";
+    background-color: white;
+    border: 0 solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+
+.isArchived {
+    background-color: rgb(210, 231, 250);
+    border: 1px solid rgb(96, 151, 233);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    grid-area: title;
+    text-align: left;
+}
+
+.title, .description {
+    margin-left: 10px;
+}
+
+.description {
+    grid-area: desc;
+    text-align: left;
+}
+
+.buttons {
+    grid-area: settings;
+}
+
+#archiveProjBtn {
+    border: 0;
+    background: white;
+    color: #3f79a8;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color .1s ease-in;
+}
+
+#archiveProjBtn:hover {
+    color: #5593c5;
+}
+
+#projMemberBtn {
+    border: 0;
+    background: white;
+    color: #d85151;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color .1s ease-in;
+}
+
+#projMemberBtn:hover {
+    color: #eb6464;
+}
+
+#yes {
+    color: rgb(99, 215, 105);
+    background: white;
+    border-radius: 5px;
+    padding: 15px;
+    border: 1px solid rgb(99, 215, 105);
+    cursor: pointer;
+    transition: background .1s ease-in;
+    margin: 5px;
+    font-weight: bold;
+    width: 70px;
+}
+
+#yes:hover {
+    background: rgba(99, 215, 105, 0.082);
+}
+
+#no {
+    color: white;
+    background: #d85151;
+    border-radius: 5px;
+    padding: 15px;
+    border: 0;
+    cursor: pointer;
+    transition: background .1s ease-in;
+    font-weight: bold;
+    margin: 5px;
+    width: 70px;
+}
+
+#no:hover {
+    background: #eb6464;
+}
+
+.memberSettings {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-row-gap: 40px;
+    grid-template-areas: "search" "list";
+}
+
+.searchMembers {
+    grid-area: search;
+    border: 3px solid rgb(99, 215, 105);
+    border-radius: 5px;
+    width: 60%;
+    height: 30px;
+    margin: 0 auto;
+}
+
+.searchMembers input {
+    width: 75%;
+    border: 0;
+    height: 28px;
+    outline: none;
+    float: left;
+}
+
+.searchMembers button {
+    background: rgb(99, 215, 105);
+    width: 20%;
+    color: white;
+    border: 0;
+    height: 30px;
+    float: right;
+    border-right: 2px solid rgb(99, 215, 105);
+}
+
+#memberList {
+    grid-area: list;
+    display:grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    grid-template-rows: auto;
+}
+
+.member {
+    padding: 10px;
+    display: grid;
+    grid-template-rows: auto;
+}
+
+#removeBtn {
+    background: rgb(240, 74, 74);
+    margin: 0 auto;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    transition: background .1s ease-in;
+    cursor: pointer;
+}
+
+#removeBtn:hover {
+    background: rgb(233, 96, 96);
+}
+
+
+/* ADD COMMENT */
+
+
+.inputBox {
+    width: 100%;
+    resize: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    grid-area: box;
+    border: 1px solid rgba(7, 170, 234, 1);
+    padding: 10px;
+    font-size: 20px;
+    outline: none;
+}
+
+.createCommentBtn {
+    border: 0;
+    color: white;
+    background: rgba(7, 170, 234, 1);
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+.createCommentBtn:hover {
+    background: rgb(86, 196, 240);
+}
+
+.commentForm {
+    display: grid;
+    grid-template-columns: 5fr 1fr;
+    grid-template-areas: "box btn";
+}
+
+.btnContainer {
+    grid-area: btn;
+}
+
+.btnContainer button {
+    height: 100%;
+    color: white;
+    background: rgba(7, 170, 234, 1);
+    cursor: pointer;
+    transition: background .1s ease-in;
+    border: 1px solid rgba(7, 170, 234, 1);
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.btnContainer button:hover {
+    background: rgb(86, 196, 240);
+}
+
+
+/* ADD REVISION */
+
+
+.revForm {
+    display: grid;
+    height: 300px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 4fr 1fr;
+    grid-row-gap: 10px;
+    grid-template-areas:
+        "title revType"
+        "text text"
+        "button button";
+}
+
+.uploadFileBtn {
+    grid-area: revType;
+}
+
+.uploadFileBtn button {
+    padding: 10px;
+    background: rgb(67, 145, 218);
+    border: 0;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+.uploadFileBtn button:hover {
+    background: rgb(104, 165, 223);
+}
+
+.fileUpload {
+    grid-area: text;
+}
+
+#addRevBtn {
+    padding: 10px;
+    background: white;
+    border: 1px solid rgb(99, 215, 105);
+    cursor: pointer;
+    border-radius: 5px;
+    color: rgb(99, 215, 105);
+    transition: background .1s ease-in;
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.createRevBtnArea {
+    grid-area: button;
+}
+
+#addRevBtn:hover {
+    background: rgba(99, 215, 105, 0.082);
+}
+
+#createRevText {
+    grid-area: text;
+    resize: none;
+}
+
+#createRevTitle {
+    height: 30px;
+    grid-area: title;
+}
+
+#createRevTitle, #createRevText {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid rgb(99, 215, 105);
+}
+
+#createRevBtn {
+    width: 130px;
+    margin: 0 auto;
+    color: white;
+    background: rgb(99, 215, 105);
+    border-radius: 5px;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+#createRevBtn:hover {
+    background: rgba(99, 215, 105, 0.85)
+}
+
+
+/* REVISION CARD */
+
+
+.revisionCard {
+    width: 90%;
+    display: grid;
+    margin-left: auto;
+    margin-right: auto;
+    grid-template-columns: 1fr auto ;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "title user"
+        "body body"
+        "id comment";
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 0 solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.05);
+}
+
+.revTitle {
+    grid-area: title;
+    text-align: left;
+}
+
+.revIdHolder {
+    grid-area: id;
+    text-align: left;
+}
+
+.revId {
+    padding: 5px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 3px;
+    font-size: 13px;
+}
+
+.revDate {
+    font-style: italic;
+    font-weight: normal;
+    font-size: 20px;
+    color: rgb(172, 172, 172);
+}
+
+.revBody {
+    grid-area: body;
+    text-align: left;
+}
+
+.gridComment {
+    grid-area: comment;
+}
+
+.revComments {
+    background-color: white;
+    border-radius: 5px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    padding: 10px;
+    overflow:auto;
+}
+
+/* .revComments:after {
+    overflow: auto;
+} */
+
+.revComments h4, .revComments p {
+    margin: 0;
+    float: left;
+}
+
+
+
+/* REVISION COMMENT CSS */
+
+.revComments {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-row-gap: 5px;
+    grid-template-columns: 1fr 4fr;
+    grid-template-areas:
+        "avatar date"
+        "avatar comment";
+}
+
+.commentUser {
+    grid-area: avatar;
+}
+
+.commentDate {
+    grid-area: date;
+    text-align: left;
+    color: rgb(86, 196, 240);
+    font-weight: normal;
+}
+
+.commentText {
+    grid-area: comment;
+    text-align: left;
+    font-size: 14px;
+}
+
+.fileCard {
+    display: grid;
+    grid-template-columns: 100px auto;
+}
+
+.fileCard img {
+    height: 50px;
+    width: 50px;
+    grid-area: body;
+    margin: 0 auto;
+}
+
+.fileCard button {
+    border:0;
+    background: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+/* FILE UPLOAD */
+
+
+.fileUpload {
+    display: grid;
+    grid-template-rows: 3fr 1fr;
+    grid-template-areas: 
+        "dropzone"
+        "files";
+}
+
+.droppedFiles {
+    grid-area: files;
+}
+
+
+.dropzone {
+    grid-area: dropzone;
+    width:100%;
+    height:100%;
+    border: 1px dashed #888;
+    border-radius: 5px;
+}

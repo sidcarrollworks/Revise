@@ -4,7 +4,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 7fr;
-    grid-template-rows: 50px auto;
+    grid-template-rows: 60px auto;
     grid-column-gap: 10px;
     grid-template-areas:
         "nav nav"
@@ -95,4 +95,189 @@
             "main"
             "sidebar";
     }  
+}
+
+
+/* SIDEBAR CSS */
+
+
+.sidebar {
+    text-align: left;
+    display: grid;
+    grid-template-rows: auto;
+    background-color: #3f79a8;
+    padding: 20px;
+    color: white;
+    border: 0 solid #e7e7e7;
+    box-shadow: 10px 0 20px rgba(0, 0, 0, 0.05);
+}
+
+.UserAvatar--inner {
+    margin: 0 auto;
+}
+
+#dashLogout {
+    background-color: rgb(243, 243, 243);
+    border: 0;
+    border-radius: 3px;
+    padding: 10px;
+    color: #3f79a8;
+    cursor: pointer;
+    transition: background .1s ease-in;
+}
+
+#dashLogout:hover {
+    background: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .userInfo {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "avatar avatar avatar"
+            "first last user"
+            "logout logout logout";
+        grid-column-gap: 10px;
+    }
+    #first {
+        grid-area: first;
+    }
+    #last {
+        grid-area: last;
+    }
+    #user {
+        grid-area: user;
+    }
+    #dashLogout {
+        grid-area: logout;
+    }
+    #userAvatar {
+        grid-area: avatar;
+    }
+}
+
+
+/* PROJECT LIST CSS */
+
+
+.projectList h1 {
+    font-size: 50px;
+    padding-top: 0;
+    margin: 0;
+    grid-area: title;
+}
+
+.projectList {
+    text-align: left;
+    padding-top: 0px;
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 20% auto;
+    grid-row-gap: 30px;
+    grid-template-areas:
+        "title button"
+        "projects projects";
+    background-color: white;
+    padding: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.projects {
+    grid-area: projects;
+}
+
+.projects h2 {
+    font-size: 25px;
+}
+
+.projectLink {
+    border-top: 1px solid rgb(209, 209, 209);
+    padding: 10px 2px;
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color .1s ease-in;
+}
+
+.projectLink:hover {
+    background-color: rgb(245, 245, 245);
+}
+
+.invitedLink {
+    display: flex;
+    border-top: 1px solid rgb(209, 209, 209);
+    padding: 10px 2px;
+    color: black;
+    font-size: 20px;
+    transition: background-color .1s ease-in;
+}
+
+.inviteBtns {
+    margin-left: auto;
+}
+
+#accept {
+    color: rgb(99, 215, 105);
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid rgb(99, 215, 105);
+    cursor: pointer;
+    transition: background .1s ease-in;
+    margin: 5px;
+}
+
+#accept:hover {
+    background: rgba(99, 215, 105, 0.082);
+}
+
+#deny {
+    color: white;
+    background: #d85151;
+    border-radius: 5px;
+    padding: 10px;
+    border: 0;
+    cursor: pointer;
+    transition: background .1s ease-in;
+    margin: 5px;
+}
+
+#deny:hover {
+    background: #eb6464;
+}
+
+
+/* DASHBOARD NAV */
+
+
+.dashNav {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-areas: "1 2 3 4 5 6 7 8";
+    height: 60px;
+    background-color: #2f383f;
+    color: rgb(42, 177, 255);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dashBtn {
+    grid-area: 1;
+    padding: 5px;
+}
+
+.dashNav a {
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    vertical-align: middle;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.dashNav a:visited {
+    color: white;
 }

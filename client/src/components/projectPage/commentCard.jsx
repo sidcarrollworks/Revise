@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import UserAvatar from 'react-user-avatar';
 
-import '../../styles/revisionCard.css';
-
 class RevComment extends Component {
   render() {
     const { owner, text, createdAt } = this.props.cmnt;
