@@ -17,9 +17,9 @@ const app = express();
 let options = null;
 if (NODE_ENV == "production")
   options = {
-    key: fs.readFileSync(PRIVKEY),
-    cert: fs.readFileSync(FULLCHAIN),
-    dhparam: fs.readFileSync(DHPARAMS)
+    key: fs.readFileSync(path.resolve(__dirname, PRIVKEY)),
+    cert: fs.readFileSync(path.resolve(__dirname, FULLCHAIN)),
+    dhparam: fs.readFileSync(path.resolve(__dirname, DHPARAMS))
   }
 
 //seting up server
