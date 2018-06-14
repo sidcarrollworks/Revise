@@ -1,6 +1,10 @@
 #bad emacs
 *~
 
+#env stuff
+ecosystem.config.js
+certs/
+
 #vscode
 .vscode/
 
