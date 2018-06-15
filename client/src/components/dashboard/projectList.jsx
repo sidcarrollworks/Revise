@@ -58,10 +58,10 @@ class Projectlist extends Component {
           <Link key={el._id} to={'/project/' + el._id}>
             <div className="projectLink">
               {el.title}
-              <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
+              {/* <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
               <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
 
-              <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
+              <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" /> */}
 
             </div>
           </Link> : null
