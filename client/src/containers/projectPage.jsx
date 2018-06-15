@@ -149,7 +149,7 @@ class ProjectPage extends Component {
               <ScrollableAnchor key={el._id} id={el._id}>
                 <RevisionCard key={el._id} isArchived={isArchived} rev={el} refresh={this.fetchData} pid={id} />
               </ScrollableAnchor>
-              ) : <h4>Add your first Revision!!! u big dumbo</h4>}
+              ) : <h4>Add your first Revision!!!</h4>}
             </div>
         </div>
       );
