@@ -18,6 +18,7 @@ router.get('/info', (req, res) => {
       })
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log('api/dashboard/info: ', err);
       res.status(400).json({
         success: false

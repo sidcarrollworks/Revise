@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import ScrollableAnchor from 'react-scrollable-anchor'
 import ScrollToTop from 'react-scroll-up';
 import UserAvatar from 'react-user-avatar';
+import io from 'socket.io-client';
 
 import '../styles/projectPage.css';
 
@@ -12,10 +13,10 @@ import AddRevision from '../components/projectPage/addRevision.jsx';
 import DashNav from '../components/navbar/dashNav.jsx';
 import IsLoading from '../components/isLoading.jsx';
 
-import { Consumer as SocketConsumer } from '../contexts/socketContext.jsx';
+// on the bench for now
+// import { Consumer as SocketConsumer } from '../contexts/socketContext.jsx';
 
 import apiClient from '../utils/api.js';
-
 
 class ProjectPage extends Component {
 
@@ -34,10 +35,26 @@ class ProjectPage extends Component {
       createdAt: "",
       isProjLoading: true,
       err: false,
-      isAuthed: false
+      isAuthed: false,
+      socket: io('/', {
+        query: {token: apiClient.fetchToken()},
+        reconnection: true,
+        reconnectionDelay: 1000,
+        reconnectionDelayMax : 5000,
+        reconnectionAttempts: Infinity
+      })
     }
 
+    this.state.socket.on('pUpdate', data => {
+      console.log("socket io: ", data)
+      this.setState({
+        revisions: data
+      })
+    })
+
     this.fetchData = this.fetchData.bind(this);
+    this.leaveProjRoom = this.leaveProjRoom.bind(this);
+    this.joinProjRoom = this.joinProjRoom.bind(this);
   }
 
   fetchData() {
@@ -54,11 +71,11 @@ class ProjectPage extends Component {
 
   componentDidMount() {
     this.fetchData();
-    this.props.joinProjRoom(this.props.match.params.id);
+    this.joinProjRoom(this.props.match.params.id);
   }
 
   componentWillUnmount() {
-    this.props.leaveProjRoom(this.props.match.params.id)
+    this.leaveProjRoom(this.props.match.params.id)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -70,15 +87,28 @@ class ProjectPage extends Component {
     //   this.props.joinProjRoom(this.props.match.params.id);
   }
 
+  joinProjRoom(pid) {
+    console.log("joined room")
+    if (this.state.revisions)
+      this.setState({
+        revisions: null
+      });
+    this.state.socket.emit('join-project', pid);
+  }
+
+  leaveProjRoom(pid) {
+    console.log("left room")
+    this.state.socket.emit('leave-project', pid);
+    this.setState({
+      revisions: null
+    });
+  }
+
   render() {
     // console.log(this.props.match.params.id)
 
     const { title, description, members, isArchived, revisions, isProjLoading, err } = this.state;
     const { id } = this.props.match.params;
-    
-    let revSwitch = revisions;
-    if (this.props.revs)
-      revSwitch = this.props.revs;
     
     if (isProjLoading)
       return <IsLoading />
@@ -115,7 +145,7 @@ class ProjectPage extends Component {
               />
               {isArchived ? <h4> this project is archived </h4> : <AddRevision refresh={this.fetchData} pid={id} />}
               
-              {revSwitch.length !== 0 ? revSwitch.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(el => 
+              {revisions.length !== 0 ? revisions.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map(el => 
               <ScrollableAnchor key={el._id} id={el._id}>
                 <RevisionCard key={el._id} isArchived={isArchived} rev={el} refresh={this.fetchData} pid={id} />
               </ScrollableAnchor>
@@ -126,16 +156,18 @@ class ProjectPage extends Component {
   }
 }
 
+export default ProjectPage;
 
-export default props => (
-  <SocketConsumer>
-    {context => (<ProjectPage
-      {...props}
-      socket={context.socket}
-      revs={context.revs}
-      joinProjRoom={context.joinProjRoom}
-      leaveProjRoom={context.leaveProjRoom}
-    />)}
-  </SocketConsumer>
-);
+// on the bench for now
+// export default props => (
+//   <SocketConsumer>
+//     {context => (<ProjectPage
+//       {...props}
+//       socket={context.socket}
+//       revs={context.revs}
+//       joinProjRoom={context.joinProjRoom}
+//       leaveProjRoom={context.leaveProjRoom}
+//     />)}
+//   </SocketConsumer>
+// );
 

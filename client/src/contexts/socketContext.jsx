@@ -14,7 +14,7 @@ class SocketProvider extends Component {
       socket: io('/', {query: {token: apiClient.fetchToken()}}),
       revisions: null
     }
-
+    console.log("ok?")
     this.state.socket.on('pUpdate', data => {
       console.log("lolwutnw", data)
       this.setState({

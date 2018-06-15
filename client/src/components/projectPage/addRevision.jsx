@@ -101,7 +101,7 @@ class AddRev extends Component {
         <button id="addRevBtn" onClick={() => this.customDialog.show()}>Add revision</button>
         <SkyLight ref={ref => this.customDialog = ref} title="Make a Revision">
           <form onSubmit={this.handleFormSubmit} onChange={this.handleFormChange} className="revForm">
-            <input id="createRevTitle" name="title" type="text" placeholder="Revision Title"/>
+            <input id="createRevTitle" value={this.state.title} name="title" type="text" placeholder="Revision Title"/>
             <div className="uploadFileBtn"><button onClick={this.handleClick}>{ this.state.text ? "TEXT" : "FILE"}</button></div>
             {this.state.text ? <Text /> : <FileUpload files={this.state.files} onDrop={this.onDrop} />}
             <div className="createRevBtnArea"><button id="createRevBtn" type="submit">Make Revision</button></div>

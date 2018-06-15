@@ -12,5 +12,7 @@ module.exports = {
   REDIS_PASS: process.env.REVISE_REDIS_PASS || null,
   FULLCHAIN: process.env.REVISE_FULLCHAIN || null,
   PRIVKEY: process.env.REVISE_PRIVKEY || null,
-  DHPARAMS: process.env.REVISE_DHPARAMS || null
+  DHPARAMS: process.env.REVISE_DHPARAMS || null,
+  SENTRY_TEST: process.env.SENTRY_TEST || null,
+  SENTRY_DNS: process.env.REVISE_SENTRY_DNS || null
 };

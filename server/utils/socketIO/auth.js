@@ -2,6 +2,7 @@ const { JWT_SECRET } = require('../../../config');
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
+const Raven = require('raven');
 
 module.exports = (socket, next) => {
   let manErr = new Error('Authentication error')
@@ -20,6 +21,7 @@ module.exports = (socket, next) => {
             }
           })
           .catch(err => {
+            Raven.captureException(err);
             console.log("socket IO auth: ", err);
             next(manErr);
           });

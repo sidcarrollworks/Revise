@@ -76,6 +76,7 @@ router.get('/:pid/:rid/download/', isAuthProj, (req, res) => {
 			}
 			})
 		.catch(err => {
+			Raven.captureException(err);
 			console.log("/:pid/:rid/download : ", err);
 			res.status(401);
 		})

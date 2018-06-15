@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const PassportLocalStrategy = require('passport-local').Strategy;
-
+const Raven = require('raven');
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
 
@@ -39,6 +39,7 @@ module.exports = new PassportLocalStrategy({
     })
     // catch any errors
     .catch(err => {
+      Raven.captureException(err);
       console.log("Login-Strategy:", err);
       done(err);
     });

@@ -1,5 +1,6 @@
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const Raven = require('raven');
 
 const { JWT_SECRET } = require('../../../config');
 
@@ -20,6 +21,7 @@ module.exports = new JwtStrategy(opts, (token, done) => {
       done(null, false);
   })
   .catch(err => {
+    Raven.captureException(err);
     console.log("jwt-strategy", err);
     done(err, false);
   });

@@ -1,5 +1,5 @@
 const PassportLocalStrategy = require('passport-local').Strategy;
-
+const Raven = require('raven');
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
 
@@ -28,6 +28,7 @@ module.exports = new PassportLocalStrategy({
 
   newUser.save((err, info) => {
     if (err) {
+      Raven.captureException(err);
       console.log("signup-strategy", err);
       done(err);
     } else {

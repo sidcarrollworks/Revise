@@ -1,4 +1,4 @@
-const { NODE_ENV, REDIS_PORT, REDIS_HOST, REDIS_PASS, PRIVKEY, FULLCHAIN, DHPARAMS } = require('../config');
+const { NODE_ENV, REDIS_PORT, REDIS_HOST, REDIS_PASS, PRIVKEY, FULLCHAIN, DHPARAMS, SENTRY_TEST, SENTRY_DNS } = require('../config');
 // importing modules
 const bodyParser = require('body-parser');
 const passport   = require('passport');
@@ -7,12 +7,19 @@ const morgan     = require("morgan");
 const helmet     = require('helmet');
 const chalk      = require('chalk');
 const redis      = require('redis');
+const Raven      = require('raven');
 const path       = require('path');
 const fs         = require('fs');
 
 // init app
 const app = express();
 
+// sentry io
+if (SENTRY_TEST || NODE_ENV == "production") {
+  Raven.config(SENTRY_DNS).install();
+  app.use(Raven.requestHandler());
+  app.use(Raven.errorHandler());
+}
 //import SSL key
 let options = null;
 if (NODE_ENV == "production")

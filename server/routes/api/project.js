@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Raven = require('raven');
 
 const mongoose = require('mongoose');
 const User = mongoose.model('Users');
@@ -35,6 +36,7 @@ router.post('/create', (req, res) => {
         })
         .catch(err => {
           console.log("api/project/create: ", err);
+          Raven.captureException(err);
           return res.status(400).json({
             success: false
           })
@@ -72,15 +74,16 @@ router.post('/:pid/create_rev', isAuthProj, (req, res) => {
         .populate('revisions.owner', regPopulateOwner)
         .populate('revisions.comments.owner', regPopulateOwner)
         .then(revs => {
-          console.log(revs)
           req.io.to(`proj:${pid}`).emit('pUpdate', revs.revisions);
         })
         .catch(err => {
+          Raven.captureException(err);
           console.log("/api/project/:pid/create 2end: ", err);
         });
     })
     .catch(err => {
       //cleanup
+      Raven.captureException(err);
       console.log("/api/project/:pid/create_rev: ", err);
       res.status(400).json({
         success: false
@@ -114,10 +117,12 @@ router.post('/:pid/create_cmnt', isAuthProj, (req, res) => {
           req.io.to(`proj:${pid}`).emit('pUpdate', revs.revisions);
         })
         .catch(err => {
+          Raven.captureException(err);
           console.log("/api/project/:pid/create 2end: ", err);
         });
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log("/api/project/:pid/create: ", err);
       res.status(400).json({
         success: false
@@ -154,6 +159,7 @@ router.post('/:pid/invite', isProjOwner, (req, res) => {
           throw new Error("no user/mods");
         })
         .catch(errU => {
+          Raven.captureException(errU);
           console.log("/api/project/:pid/invite U: ", errU);
           res.status(400).json({
             success: false
@@ -191,6 +197,7 @@ router.post('/:pid/uninvite', isProjOwner, (req, res) => {
         throw new Error("no user/mods");
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log("/api/project/:pid/invite: ", err);
       res.status(400).json({
         success: false
@@ -226,6 +233,7 @@ router.get('/:pid/accept', invited, (req, res) => {
         throw new Error("no proj/mods");
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log("/api/project/:pid/accept: ", err);
       res.status(400).json({
         success: false
@@ -257,6 +265,7 @@ router.get('/:pid/decline', invited, (req, res) => {
         throw new Error("no proj/mods");
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log("/api/project/:pid/decline: ", err);
       res.status(400).json({
         success: false
@@ -284,6 +293,7 @@ router.get('/:pid/archive', isProjOwner, (req, res) => {
 
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log("/api/project/:pid/archive: ", err);
       res.status(400).json({
         success: false
@@ -318,6 +328,7 @@ router.get('/:pid', isAuthProj, (req, res) => {
       }, Math.floor(Math.random() * 1700) + 200);
     })
     .catch(err => {
+      Raven.captureException(err);
       console.log('api/projects/:id ', err);
       res.status(400).json({
         success: false
