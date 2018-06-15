@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 
 import '../styles/dashboard.css';
 
-import Sidebar from '../components/dashboard/sidebar.jsx';
 import Projectlist from '../components/dashboard/projectList.jsx';
 import IsLoading from '../components/isLoading.jsx';
 import DashNav from '../components/navbar/dashNav.jsx';
@@ -105,7 +104,6 @@ class Dashboard extends Component {
   render() {
     const { title, description } = this.state.projFormData;
     const { dashboardInfo } = this.state;
-
     return (
       this.props.isLoading
       ?
@@ -116,18 +114,21 @@ class Dashboard extends Component {
       <Redirect to="/"/>
       :
       <div className="dashboardGrid">
-        <div className="dashboardNav"> <DashNav /></div>
+        <div className="dashboardNav"> <DashNav handleLogout={this.props.handleLogout} user={this.props.user} /></div>
 
-        <div className="sidebar">
+        {/* <div className="sidebar">
           <Sidebar
             handleLogout={this.props.handleLogout}
             user={this.props.user}
           />
-        </div>
+        </div> */}
 
         <div className="projectPanel">
+        <h1>Hello, {this.props.user.firstName}!</h1>
+        <h3>{this.props.user.projects ? "Try creating a project" : null }</h3>
           <div className="projectList">
-            <h1>Projects</h1>
+          <h1>Projects</h1>
+
 
             {/* creating a new project skybox and logic */}
             <div className="newProject">

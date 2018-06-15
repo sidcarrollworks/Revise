@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import UserAvatar from 'react-user-avatar';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-import '../../styles/revisionCard.css';
 
 import RevComment from './commentCard.jsx';
 import AddComment from './addComment.jsx';
@@ -47,10 +46,8 @@ class revisionCard extends Component {
               </CopyToClipboard>
 
             </div>
-          <div className="gridComment">
-              {isArchived ? null : <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />}
-          </div>
         </div>
+        {isArchived ? null : <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />}
 
         {comments.length ? comments.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map(el => <RevComment key={el._id} cmnt={el} />) : null}

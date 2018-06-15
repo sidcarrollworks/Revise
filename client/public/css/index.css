@@ -1,11 +1,14 @@
-html, body {
-    width: 100%;
-    height: 100%;
-    background-color: #fafafa;
+html {
+  height: 100%;
+}  
+  
+body {
+  height: 100%;
+  width: 100%;
 }
 
 * {
-  font-family: 'Noto Sans', sans-serif !important;
+  font-family: 'Source Sans Pro', sans-serif !important;
 }
 
 a:visited {

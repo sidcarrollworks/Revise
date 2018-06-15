@@ -24,7 +24,7 @@ class AuthProvider extends Component {
   handleLogin(credentials) {
     authClient.logIn(credentials).then(res => {
       this.setState({ isAuth: true, user: res, isLoading: false, err: false });
-      this.props.history.push('/dashboard');
+      // this.props.history.push('/dashboard');
     })
     .catch(err => {
       console.log("loginContext: ", err);
@@ -36,7 +36,6 @@ class AuthProvider extends Component {
   handleLogout() {
     this.setState({ isAuth: false, user: null });
     authClient.logOut();
-    this.props.history.push('/');
   }
 
   componentWillMount() {

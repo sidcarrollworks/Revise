@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import UserAvatar from 'react-user-avatar';
 // import { Link } from 'react-router-dom';
-import '../../styles/sidebar.css';
 
-class Sidebar extends Component {
+class Sidebar extends Component { 
   render() {
     const { avatarUrl, firstName, lastName, username, defaultAvatar } = this.props.user;
     return (

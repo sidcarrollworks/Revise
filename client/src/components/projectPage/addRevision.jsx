@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import SkyLight from 'react-skylight';
 import validator from 'validator';
-
-import '../../styles/addRevision.css';
 
 import Text from './addRevComponents/text.jsx';
 import FileUpload from './addRevComponents/fileUpload.jsx';
@@ -19,7 +16,8 @@ class AddRev extends Component {
       body: "",
       text: true,
       files: [],
-      err: false
+      err: false,
+      revToggle: false
     }
 
     
@@ -30,6 +28,12 @@ class AddRev extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleFormChange = this.handleFormChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.toggleRev = this.toggleRev.bind(this);
+  }
+
+  toggleRev(e) {
+    e.preventDefault();
+    this.setState({revToggle: !this.state.revToggle});
   }
 
   handleFormChange(e) {
@@ -63,14 +67,12 @@ class AddRev extends Component {
             apiClient.uploadFile(pid, res, files[0])
               .then(res => {
                 console.log(res);
-                this.customDialog.hide()
-                this.setState({err: false});
+                this.setState({err: false, revToggle: false, title: ""});
               })
 
           } else {
             console.log(res)
-            this.customDialog.hide()
-            this.setState({err: false});
+            this.setState({err: false, revToggle: false, title: "", body: ""});
           }
         })
         .catch(err => {
@@ -98,16 +100,21 @@ class AddRev extends Component {
   render() {
     return (
       <div className="addRev">
-        <button id="addRevBtn" onClick={() => this.customDialog.show()}>Add revision</button>
-        <SkyLight ref={ref => this.customDialog = ref} title="Make a Revision">
-          <form onSubmit={this.handleFormSubmit} onChange={this.handleFormChange} className="revForm">
-            <input id="createRevTitle" value={this.state.title} name="title" type="text" placeholder="Revision Title"/>
-            <div className="uploadFileBtn"><button onClick={this.handleClick}>{ this.state.text ? "TEXT" : "FILE"}</button></div>
-            {this.state.text ? <Text /> : <FileUpload files={this.state.files} onDrop={this.onDrop} />}
-            <div className="createRevBtnArea"><button id="createRevBtn" type="submit">Make Revision</button></div>
-            { this.state.err ? <h4> there was an error posting Revision </h4> : null }
-          </form>
-        </SkyLight>
+        {
+          this.state.revToggle
+          ?  
+          <div className="addRevBox">
+            <form onSubmit={this.handleFormSubmit} onChange={this.handleFormChange} className="revForm">
+              <input value={this.state.title} id="createRevTitle" name="title" type="text" placeholder="Revision Title"/>
+              <div className="uploadFileBtn"><button onClick={this.handleClick}>{ this.state.text ? "TEXT" : "FILE"}</button></div>
+              {this.state.text ? <Text value={this.state.body} /> : <FileUpload files={this.state.files} onDrop={this.onDrop} />}
+              <div className="createRevBtnArea"><button id="cancelRev" onClick={this.toggleRev}>Cancel</button><button id="createRevBtn" type="submit">Make Revision</button></div>
+              { this.state.err ? <h4> there was an error posting Revision </h4> : null }
+            </form>
+          </div>
+          :
+          <button id="addRevBtn" onClick={this.toggleRev}>Add revision</button>
+        }
       </div>
     );
   }

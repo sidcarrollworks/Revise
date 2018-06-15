@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import SkyLight from 'react-skylight';
 import UserAvatar from 'react-user-avatar';
 
-import '../../styles/projectCard.css';
-
 import apiClient from '../../utils/api.js';
 
 class Members extends Component {

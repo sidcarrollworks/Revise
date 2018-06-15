@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import UserAvatar from 'react-user-avatar';
 // import { goToAnchor } from 'react-scrollable-anchor';
 
-import '../../styles/revisionCard.css';
-
 class RevComment extends Component {
 
   render() {

@@ -15,6 +15,7 @@ import IsLoading from '../components/isLoading.jsx';
 
 // on the bench for now
 // import { Consumer as SocketConsumer } from '../contexts/socketContext.jsx';
+import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';
 
 import apiClient from '../utils/api.js';
 
@@ -109,16 +110,15 @@ class ProjectPage extends Component {
 
     const { title, description, members, isArchived, revisions, isProjLoading, err } = this.state;
     const { id } = this.props.match.params;
-    
-    if (isProjLoading)
+    if (isProjLoading || this.props.isLoading)
       return <IsLoading />
-    else if (!this.state.isAuthed && !this.state.isProjLoading)
+    else if ((!this.props.isAuth) || (!this.state.isAuthed && !this.state.isProjLoading))
       return <Redirect to="/dashboard" />
     else if (err)
       return (
         <div className="projectContainer">
           <div className="projectNav">
-            <DashNav />
+            <DashNav handleLogout={this.props.handleLogout} user={this.props.user} />
           </div>
             <div className="projectMain">
               <h4> there has been an error </h4>
@@ -129,10 +129,10 @@ class ProjectPage extends Component {
       return (
         <div className="projectContainer">
           <ScrollToTop showUnder={160}>
-            <UserAvatar size="40" src="/don/3.jpeg" name="dc" />
+            <span>TOP</span>
           </ScrollToTop>
           <div className="projectNav">
-            <DashNav />
+            <DashNav handleLogout={this.props.handleLogout} user={this.props.user} />
           </div>
             <div className="projectMain">
               <ProjectCard
@@ -156,7 +156,7 @@ class ProjectPage extends Component {
   }
 }
 
-export default ProjectPage;
+// export default ProjectPage;
 
 // on the bench for now
 // export default props => (
@@ -171,3 +171,15 @@ export default ProjectPage;
 //   </SocketConsumer>
 // );
 
+export default props => (
+  <AuthConsumer>
+    {context => (<ProjectPage
+      {...props}
+      user={context.state.user}
+      isAuth={context.state.isAuth}
+      handleLogout={context.handleLogout}
+      isLoading={context.state.isLoading}
+    />)}
+  </AuthConsumer>
+);
+// export default ProjectPage;
