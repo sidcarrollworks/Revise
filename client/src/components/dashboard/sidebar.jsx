@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import UserAvatar from 'react-user-avatar';
 // import { Link } from 'react-router-dom';
 
-class Sidebar extends Component {
+class Sidebar extends Component { 
   render() {
     const { avatarUrl, firstName, lastName, username, handleLogout } = this.props.user;
     return (
@@ -13,7 +13,7 @@ class Sidebar extends Component {
           <h4 id="last">{lastName}</h4>
           <h4 id="user">{username}</h4>
         </div>
-        <button id="dashLogout" onClick={handleLogout}>Log out</button>
+        <button id="dashLogout" onClick={this.props.handleLogout}>Log out</button>
       </div>
     );
   }

@@ -3,13 +3,14 @@
     height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 7fr;
-    grid-template-rows: 60px auto;
+    grid-template-columns: 10% auto 10%;
+    grid-template-rows: 50px auto;
     grid-column-gap: 10px;
+    grid-row-gap: 10px;
     grid-template-areas:
-        "nav nav"
-        "sidebar main";
-    background-color: #fafafa;
+        "nav nav nav"
+        ". main .";
+    /* background-color: #fafafa; */
 }
 
 .dashboardNav {
@@ -100,7 +101,7 @@
 
 /* SIDEBAR CSS */
 
-
+/* 
 .sidebar {
     text-align: left;
     display: grid;
@@ -156,7 +157,7 @@
     #userAvatar {
         grid-area: avatar;
     }
-}
+} */
 
 
 /* PROJECT LIST CSS */
@@ -180,9 +181,15 @@
     grid-template-areas:
         "title button"
         "projects projects";
-    background-color: white;
+    /* background-color: white; */
     padding: 15px;
+    /* border: 1px solid #eeeeee; */
+    border-radius: 5px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.projectList h1 {
+    color: #1E64E0;
 }
 
 .projects {
@@ -194,16 +201,20 @@
 }
 
 .projectLink {
-    border-top: 1px solid rgb(209, 209, 209);
+    border: 1px solid rgb(216, 216, 216);
+    border-radius: 3px;
     padding: 10px 2px;
     color: black;
     font-size: 20px;
     cursor: pointer;
     transition: background-color .1s ease-in;
+    margin-top: 5px;
+    width: 60%;
 }
 
 .projectLink:hover {
-    background-color: rgb(245, 245, 245);
+    background-color: rgb(253, 253, 253);
+    box-shadow: 0px 2px 30px -7px rgba(30,100,224,.4);
 }
 
 .invitedLink {
@@ -217,6 +228,10 @@
 
 .inviteBtns {
     margin-left: auto;
+}
+
+.projectType {
+    color: #1899E8;
 }
 
 #accept {
@@ -254,30 +269,90 @@
 
 
 .dashNav {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-areas: "1 2 3 4 5 6 7 8";
-    height: 60px;
-    background-color: #2f383f;
-    color: rgb(42, 177, 255);
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-}
-
-.dashBtn {
-    grid-area: 1;
-    padding: 5px;
+    display: flex;
+    height: 100%;
+    color: #2335D8;
+    background-color: white;
+    border-bottom: 1px solid #1E64E0;
+    box-shadow: 0px 3px 5px 2px rgba(0,0,0,.03);
 }
 
 .dashNav a {
-    text-align: center;
     text-decoration: none;
-    color: white;
-    font-size: 25px;
-    vertical-align: middle;
-    padding: 10px;
+    color: #1E64E0;
+    font-size: 20px;
+    padding: 5px 0;
+    margin: auto 0;
     font-weight: bold;
 }
 
 .dashNav a:visited {
-    color: white;
+    color: #1E64E0;
+}
+
+.dashLink:hover {
+    border-bottom: 2px solid #1E64E0;
+}
+
+#dashLogo {
+    padding: 5px;
+    height: 30px;
+    margin: auto 10px;
+}
+
+#dashAvatar {
+    margin-left: auto;
+    padding: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* NAVBAR DROP DOWN */
+
+.dropDownOff {
+    display: none;
+    transition: all .3s ease-in-out;
+}
+
+.dropDownOn {
+    display: block;
+    position: absolute;
+    background: white;
+    border-radius: 5px;
+    transition: all .3s ease-in-out;
+    padding: 10px;
+    margin-right: 10px;
+    right: 10px;
+    width: 200px;
+    border: 1px solid #1E64E0;
+    cursor: default;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dropDownElement {
+    list-style: none;
+    color: rgb(55, 55, 55);
+}
+
+#dashLogout {
+    float: left;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#dashLogout:hover {
+    color: rgb(97, 97, 97);
+}
+
+#username {
+    border-bottom: 1px solid rgb(214, 214, 214);
+    width: 90%;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+@media only screen and (max-width: 600px) {
+    .projectLink {
+        width: 100%;
+    }
 }

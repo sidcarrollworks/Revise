@@ -3,23 +3,18 @@
 .landingGrid {
     display: grid;
     height: 100%;
-    min-height: 100%;
     font-family: 'Noto Sans', sans-serif;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: auto;
-    grid-row-gap: 20%;
+    grid-row-gap: 10%;
     grid-template-areas:
         ". header ."
         ". main ."
         "footer footer footer";
-    background : -moz-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
-    background : -webkit-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
-    background : -webkit-gradient(radial,50% 50% ,0 , 50% 50%, 778.85 ,color-stop(0,rgba(106, 190, 230, 1) ),color-stop(0.2035,rgba(83, 185, 231, 1) ),color-stop(0.74,rgba(28, 174, 233, 1) ),color-stop(1,rgba(7, 170, 234, 1) ));
-    background : -o-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
-    background : -ms-radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Stlye=2);";
-    background : radial-gradient(50% 50%, circle farthest-corner, rgba(106, 190, 230, 1) 0%, rgba(83, 185, 231, 1) 20.35%, rgba(28, 174, 233, 1) 74%, rgba(7, 170, 234, 1) 100%);
-    filter: progid:DXImageTransform.Microsoft.Alpha(Stlye=2);
+    background-image: url('/assets/SVG/background2.svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
 
 .header {

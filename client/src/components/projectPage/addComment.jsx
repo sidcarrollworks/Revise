@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import SkyLight from 'react-skylight';
 
 import apiClient from '../../utils/api.js';
 
@@ -54,14 +53,11 @@ class AddRev extends Component {
 
     return (
       <>
-        <button className="createCommentBtn" onClick={() => this.customDialog.show()}>Comment</button>
-        <SkyLight dialogStyles={commentBox} hideOnOverlayClicked ref={ref => this.customDialog = ref} title="Create a new comment">
-          <form onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit} className='commentForm'>
-            <textarea name="text" className="inputBox" rows="3" cols="30" placeholder="Comment"></textarea>
-            <div className="btnContainer"><button type="submit">Comment</button></div>
-            { this.state.err ? <h4> there was an error posting Comment </h4> : null }
-          </form>
-        </SkyLight>
+        <form onChange={this.handleFormChanges} onSubmit={this.handleFormSubmit} className='commentForm'>
+          <textarea name="text" className="inputBox" rows="1" placeholder="Comment"></textarea>
+          <button className="commentBtn" type="submit">Comment</button>
+          { this.state.err ? <h4> there was an error posting Comment </h4> : null }
+        </form>
       </>
     );
   }

@@ -9,6 +9,8 @@ import AddRevision from '../components/projectPage/addRevision.jsx';
 import DashNav from '../components/navbar/dashNav.jsx';
 import IsLoading from '../components/isLoading.jsx';
 
+import { Consumer as AuthConsumer } from '../contexts/authContext.jsx';
+
 import apiClient from '../utils/api.js';
 
 
@@ -63,15 +65,15 @@ class ProjectPage extends Component {
     // console.log(this.props.match.params.id)
     const { title, description, members, isArchived, revisions, isProjLoading, err } = this.state;
     const { id } = this.props.match.params;
-    if (isProjLoading)
+    if (isProjLoading || this.props.isLoading)
       return <IsLoading />
-    else if (!this.state.isAuthed && !this.state.isProjLoading)
+    else if ((!this.props.isAuth) || (!this.state.isAuthed && !this.state.isProjLoading))
       return <Redirect to="/dashboard" />
     else if (err)
       return (
         <div className="projectContainer">
           <div className="projectNav">
-            <DashNav />
+            <DashNav handleLogout={this.props.handleLogout} user={this.props.user} />
           </div>
             <div className="projectMain">
               <h4> there has been an error </h4>
@@ -82,7 +84,7 @@ class ProjectPage extends Component {
       return (
         <div className="projectContainer">
           <div className="projectNav">
-            <DashNav />
+            <DashNav handleLogout={this.props.handleLogout} user={this.props.user} />
           </div>
             <div className="projectMain">
               <ProjectCard
@@ -108,5 +110,15 @@ class ProjectPage extends Component {
 // then map over revision comments inside of revision cards
 // then do a barrel roll
 
-
-export default ProjectPage;
+export default props => (
+  <AuthConsumer>
+    {context => (<ProjectPage
+      {...props}
+      user={context.state.user}
+      isAuth={context.state.isAuth}
+      handleLogout={context.handleLogout}
+      isLoading={context.state.isLoading}
+    />)}
+  </AuthConsumer>
+);
+// export default ProjectPage;

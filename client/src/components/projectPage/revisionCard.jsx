@@ -23,10 +23,8 @@ class revisionCard extends Component {
               {isFile ? <FileCard rid={_id} pid={pid} filename={filename} filesize={filesize} /> : <p>{body}</p>}
           </div>
           <div className="revIdHolder"><span className="revId">{`#${_id}`}</span></div>
-          <div className="gridComment">
-              {isArchived ? null : <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />}
-          </div>
         </div>
+        {isArchived ? null : <AddComment refresh={this.props.refresh} rId={_id} pid={this.props.pid} />}
 
         {comments.length ? comments.sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt))
         .map(el => <RevComment key={el._id} cmnt={el} />) : null}
