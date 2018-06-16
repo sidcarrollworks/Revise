@@ -137,7 +137,7 @@ router.post('/:pid/invite', isProjOwner, (req, res) => {
   const { pid } = req.params;
   let invitee = req.body.invitee
   
-  if (invitee){
+  if (invitee && req.user.username !== invitee){
     User.findOneAndUpdate({ username: invitee }, { $push: { invitedProj: pid } })
       .then(infoUser => {
 

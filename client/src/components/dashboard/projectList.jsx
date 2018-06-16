@@ -62,7 +62,6 @@ class Projectlist extends Component {
               <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" />
 
               <UserAvatar size="20" src={`/don/${Math.floor(Math.random() * 12)}.jpeg`} name="Don Cheadle" /> */}
-
             </div>
           </Link> : null
         ) }
